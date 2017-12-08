@@ -2,7 +2,6 @@
 #define _MATERIAL_IMPORTER_H_
 
 #include "Importer.h"
-#include <string>
 
 class ComponentMaterial;
 class ResourceMaterial;
@@ -12,10 +11,6 @@ class MaterialImporter : public Importer
 public:
 	
 	MaterialImporter();
-
-private:
-
-	mutable std::string usable_str;
 
 public:
 

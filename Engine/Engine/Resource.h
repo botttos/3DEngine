@@ -11,8 +11,7 @@ enum RESOURCE_TYPE
 	UNDEF_RESOURCE = 0,
 	MESH_RESOURCE,
 	MATERIAL_RESOURCE,
-	SCENE_RESOURCE,
-	SCRIPT_RESOURCE
+	SCENE_RESOURCE
 };
 
 class Resource
@@ -59,8 +58,8 @@ public:
 	void RestReference();
 
 	//Save/Load Methods
-	virtual bool Save();
-	virtual bool Load(Serializer& data);
+	virtual bool	Save();
+	virtual bool	Load(Serializer& data);
 
 	//UI
 	virtual void BlitUI()const;

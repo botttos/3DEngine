@@ -8,7 +8,6 @@
 #include "Resource.h"
 #include "ResourceMesh.h"
 #include "ResourceMaterial.h"
-#include "ResourceScript.h"
 
 #include"Timer.h"
 #include <experimental/filesystem>
@@ -42,8 +41,8 @@ private:
 	ResourceMesh* cylinder_hi_mesh = nullptr;
 
 	//Inspected resources
-	std::vector<Resource*>	inspected_resources;
-	
+	std::vector<Resource*> inspected_resources;
+
 	//Update resources
 	Timer metas_timer;
 	std::experimental::filesystem::path path;
@@ -58,7 +57,7 @@ public:
 	//Resource management methods
 	Resource*		CreateResource(RESOURCE_TYPE type, uint id = 0);
 	ResourceMesh*	GetPrimitiveResourceMesh(PRIMITIVE_TYPE type);
-	
+
 	//Import methods
 	uint	CheckAssetsResources();
 	bool	CheckIfFileIsImported(const char* path)const;
