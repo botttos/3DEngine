@@ -64,9 +64,6 @@
     <Filter Include="Sources\Resources">
       <UniqueIdentifier>{2d5aa437-1437-4cf7-a6ac-784e664dd34d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Modules\Scripting">
-      <UniqueIdentifier>{a91f5223-c915-4771-a273-e352a6891586}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Color.h">
@@ -441,6 +438,7 @@
     <ClInclude Include="Engine\SceneImporter.h">
       <Filter>Sources\Importers &amp; Serializer</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Engine\ScriptManager.h">
       <Filter>Sources\Modules\Scripting</Filter>
     </ClInclude>
@@ -456,6 +454,8 @@
     <ClInclude Include="Engine\ResourceScript.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of 0aa64ce... Scripting Modules base defined!
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Color.cpp">
@@ -731,6 +731,7 @@
     <ClCompile Include="Engine\SceneImporter.cpp">
       <Filter>Sources\Importers &amp; Serializer</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Engine\ScriptManager.cpp">
       <Filter>Sources\Modules\Scripting</Filter>
     </ClCompile>
@@ -746,6 +747,8 @@
     <ClCompile Include="Engine\ResourceScript.cpp">
       <Filter>Sources\Resources</Filter>
     </ClCompile>
+=======
+>>>>>>> parent of 0aa64ce... Scripting Modules base defined!
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Snippets\CodeShortcuts.snippet">
