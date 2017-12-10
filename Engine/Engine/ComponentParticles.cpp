@@ -10,7 +10,6 @@ ComponentParticle::~ComponentParticle()
 
 bool ComponentParticle::Start()
 {
-	for (int i = 1; i < particle_count; i++)
 	{
 		//Position
 		particles[i].x_pos = 0;
@@ -39,5 +38,11 @@ bool ComponentParticle::Start()
 		particles[i].deceleration = 0.0025;
 
 	}
+	return true;
+}
+
+bool ComponentParticle::Update(float dt)
+{
+
 	return true;
 }

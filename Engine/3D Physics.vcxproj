@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\ComponentParticles.h" />
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\BasicConsole.h" />
     <ClInclude Include="Engine\Capsule_.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Engine\Primitive_.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\ComponentParticles.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Engine\BasicConsole.cpp" />
     <ClCompile Include="Engine\Capsule_.cpp" />

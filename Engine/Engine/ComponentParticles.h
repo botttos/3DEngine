@@ -1,9 +1,8 @@
 #ifndef _COMPONENT_PARTICLES_H_
 #define _COMPONENT_PARTICLES_H_
 
-#include "Engine\Component.h"
-#include <gl\GL.h>
-#include "Engine\glut\glut.h"
+#include "Component.h"
+
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
@@ -33,12 +32,12 @@ public:
 	~ComponentParticle();
 
 	bool Start();
+	bool Update(float dt);
 
 private:
 	const int particle_count = 500;
 
-	GLfloat texture[10];
-
+	//GLfloat texture[10];
 	Particle particles[500];
 };
 
