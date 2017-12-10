@@ -2,8 +2,7 @@
 #define _COMPONENT_PARTICLES_H_
 
 #include "Component.h"
-
-#include <windows.h>
+#include "Globals.h"
 #include <stdio.h>
 #include <math.h>
 #include <vector>
@@ -36,9 +35,9 @@ public:
 
 private:
 	const int particle_count = 500;
-
 	//GLfloat texture[10];
 	Particle particles[500];
+
 };
 
 #endif // !_COMPONENT_PARTICLES_H_

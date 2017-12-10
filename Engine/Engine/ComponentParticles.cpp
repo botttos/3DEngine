@@ -1,4 +1,7 @@
 #include "ComponentParticles.h"
+#include "Glew/include/glew.h"
+#include "SDL/include/SDL_opengl.h"
+
 
 ComponentParticle::ComponentParticle()
 {
@@ -44,6 +47,20 @@ bool ComponentParticle::Start()
 
 bool ComponentParticle::Update(float dt)
 {
+	for (int i = 0; i < particle_count; i++)
+	{
+		//Set the color of the particle
+		glColor3f(particles[i].red, particles[i].green, particles[i].blue);
 
+		//Move particle
+		particles[i].y_pos += (particles[i].acceleration - particles[i].deceleration);
+		particles[i].deceleration += 0.0025;
+
+		particles[i].x_pos += particles[i].x_mov;
+		particles[i].z_pos += particles[i].z_mov;
+
+		//Rotate particle
+		particles[i].direction += (rand() % 11);
+	}
 	return true;
 }
