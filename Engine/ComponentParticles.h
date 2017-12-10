@@ -32,12 +32,14 @@ public:
 	ComponentParticle();
 	~ComponentParticle();
 
+	bool Start();
+
 private:
-	int particle_count = 500;
+	const int particle_count = 500;
 
 	GLfloat texture[10];
 
-	std::vector<Particle> particles;
+	Particle particles[500];
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
