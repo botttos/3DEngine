@@ -32,12 +32,14 @@ public:
 
 	bool Start();
 	bool Update(float dt);
+	bool Draw();
+	//Utility
+	void ResetParticles(Particle p);
 
 private:
 	const int particle_count = 500;
-	//GLfloat texture[10];
+	uint texture_id;
 	Particle particles[500];
-
 };
 
 #endif // !_COMPONENT_PARTICLES_H_

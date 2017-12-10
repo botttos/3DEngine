@@ -47,6 +47,8 @@ bool ComponentParticle::Start()
 
 bool ComponentParticle::Update(float dt)
 {
+	Draw();
+
 	for (int i = 0; i < particle_count; i++)
 	{
 		//Set the color of the particle
@@ -61,6 +63,73 @@ bool ComponentParticle::Update(float dt)
 
 		//Rotate particle
 		particles[i].direction += (rand() % 11);
+
+		if (particles[i].y_pos < -5)
+			ResetParticles(particles[i]);
 	}
 	return true;
+}
+
+bool ComponentParticle::Draw()
+{
+	for (int i = 0; i < particle_count; i++)
+	{
+		glPushMatrix();
+
+		//Translate x y z axis coords
+		glTranslatef(particles[i].x_pos, particles[i].y_pos, particles[i].z_pos);
+
+		//Rotate particle
+		glRotatef(particles[i].direction - 90, 0, 0, 1);
+
+		//Scale particle
+		glScalef(particles[i].scale, particles[i].scale, particles[i].scale);
+
+		//Disable depth texting and enable blend
+		glDisable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+
+		glBlendFunc(GL_DST_COLOR, GL_ZERO);
+		glBindTexture(GL_TEXTURE_2D, texture_id);
+
+		//Drawing shape
+		glBegin(GL_QUADS);
+		glTexCoord2d(0, 0);
+		glVertex3f(-1, -1, 0);
+		glTexCoord2d(1, 0);
+		glVertex3f(1, -1, 0);
+		glTexCoord2d(1, 1);
+		glVertex3f(1, 1, 0);
+		glTexCoord2d(0, 1);
+		glVertex3f(-1, 1, 0);
+		glEnd();
+
+		//Enable depth testing again and end particle changes
+		glEnable(GL_DEPTH_TEST);
+		glPopMatrix();
+
+	}
+	return false;
+}
+
+void ComponentParticle::ResetParticles(Particle p)
+{
+	//Position
+	p.x_pos = 0;
+	p.y_pos = -5;
+	p.z_pos = -5;
+
+	//Set RGB colors
+	p.red = 1;
+	p.green = 1;
+	p.blue = 1;
+
+	//Initial rotation
+	p.direction = 0;
+
+	//Acceleration with random
+	p.acceleration = (rand() % 11);
+
+	//Deceleration
+	p.deceleration = 0.0025;
 }
