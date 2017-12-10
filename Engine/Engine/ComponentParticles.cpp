@@ -2,7 +2,6 @@
 #include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
 
-
 ComponentParticle::ComponentParticle()
 {
 }
@@ -13,6 +12,8 @@ ComponentParticle::~ComponentParticle()
 
 bool ComponentParticle::Start()
 {
+	//Pick texture
+	//id_texture =
 	for (int i = 0; i < particle_count; i++)
 	{
 		//Position
