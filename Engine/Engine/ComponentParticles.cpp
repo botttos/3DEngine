@@ -10,6 +10,7 @@ ComponentParticle::~ComponentParticle()
 
 bool ComponentParticle::Start()
 {
+	for (int i = 0; i < particle_count; i++)
 	{
 		//Position
 		particles[i].x_pos = 0;

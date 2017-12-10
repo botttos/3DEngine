@@ -438,6 +438,7 @@
     <ClInclude Include="Engine\SceneImporter.h">
       <Filter>Sources\Importers &amp; Serializer</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\ComponentParticles.h">
       <Filter>Sources\GameObject &amp; Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -715,6 +716,7 @@
     <ClCompile Include="Engine\SceneImporter.cpp">
       <Filter>Sources\Importers &amp; Serializer</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\ComponentParticles.cpp">
       <Filter>Sources\GameObject &amp; Components</Filter>
     </ClCompile>
   </ItemGroup>
