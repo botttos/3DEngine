@@ -24,8 +24,8 @@ bool ComponentParticle::Start()
 		particles[i].z_pos = -5;
 
 		//Movement with random
-		particles[i].x_mov = (rand() % 11);
-		particles[i].z_mov = (rand() % 11);
+		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
+		particles[i].z_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 
 		//Set RGB colors
 		particles[i].red = 1;
@@ -39,7 +39,7 @@ bool ComponentParticle::Start()
 		particles[i].direction = 0;
 
 		//Acceleration with random
-		particles[i].acceleration = (rand() % 11);
+		particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) -(((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 
 		//Deceleration
 		particles[i].deceleration = 0.0025;
@@ -65,9 +65,9 @@ bool ComponentParticle::Update(float dt)
 		particles[i].z_pos += particles[i].z_mov;
 
 		//Rotate particle
-		particles[i].direction += (rand() % 11);
+		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 
-		if (particles[i].y_pos < -5 || particles[i].y_pos > 5)
+		if (particles[i].y_pos < -5 )
 			ResetParticles(particles[i]);
 	}
 	return true;
@@ -133,8 +133,12 @@ void ComponentParticle::ResetParticles(Particle& p)
 	p.direction = 0;
 
 	//Acceleration with random
-	p.acceleration = (rand() % 11);
-
+	p.acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 	//Deceleration
 	p.deceleration = 0.0025;
+}
+
+void ComponentParticle::BlitComponentInspector()
+{
+
 }

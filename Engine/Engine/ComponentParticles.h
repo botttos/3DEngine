@@ -36,6 +36,7 @@ public:
 	
 	//Utility
 	void ResetParticles(Particle& p);
+	void BlitComponentInspector();
 
 private:
 	const int particle_count = 500;
