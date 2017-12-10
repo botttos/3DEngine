@@ -1,6 +1,8 @@
 #include "ComponentParticles.h"
 #include "Glew/include/glew.h"
 #include "SDL/include/SDL_opengl.h"
+#include "Application.h"
+#include "ModuleTextures.h"
 
 ComponentParticle::ComponentParticle()
 {
@@ -65,7 +67,7 @@ bool ComponentParticle::Update(float dt)
 		//Rotate particle
 		particles[i].direction += (rand() % 11);
 
-		if (particles[i].y_pos < -5)
+		if (particles[i].y_pos < -5 || particles[i].y_pos > 5)
 			ResetParticles(particles[i]);
 	}
 	return true;
@@ -91,7 +93,7 @@ bool ComponentParticle::Draw()
 		glEnable(GL_BLEND);
 
 		glBlendFunc(GL_DST_COLOR, GL_ZERO);
-		glBindTexture(GL_TEXTURE_2D, texture_id);
+		glBindTexture(GL_TEXTURE_2D, App->textures->garbage_icon);
 
 		//Drawing shape
 		glBegin(GL_QUADS);
@@ -107,13 +109,15 @@ bool ComponentParticle::Draw()
 
 		//Enable depth testing again and end particle changes
 		glEnable(GL_DEPTH_TEST);
+		glDisable(GL_BLEND);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		glPopMatrix();
 
 	}
 	return false;
 }
 
-void ComponentParticle::ResetParticles(Particle p)
+void ComponentParticle::ResetParticles(Particle& p)
 {
 	//Position
 	p.x_pos = 0;

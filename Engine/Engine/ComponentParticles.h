@@ -5,7 +5,7 @@
 #include "Globals.h"
 #include <stdio.h>
 #include <math.h>
-#include <vector>
+#include "ComponentMaterial.h"
 
 struct Particle
 {
@@ -33,8 +33,9 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool Draw();
+	
 	//Utility
-	void ResetParticles(Particle p);
+	void ResetParticles(Particle& p);
 
 private:
 	const int particle_count = 500;
