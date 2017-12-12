@@ -583,35 +583,132 @@ void ModuleImgui::BlitAboutWindow()
 	ImGui::SetNextWindowSize(ImVec2(500, 500));
 	ImGui::Begin("About us", &show_about_window, ImGuiWindowFlags_::ImGuiWindowFlags_NoResize);
 
-	ImGui::Text("Welcome to Particle System");
-	ImGui::Text("This is an engine made as a part of a college degree");
-	ImGui::Text("We are: Alexis Cosano and Francisco Ruiz\n\n");
+	// Testing
+	ImGui::TextColored(ImVec4(1, 1, 0, 100), "=== Particle System ===");
+	ImGui::Text("This is a particle system made by Alexis Cosano and Fran Ruiz,\ntwo college students from the CITM UPC, Terrassa.\nThe engine used as a base is:");
+	if (ImGui::MenuItem("- Fiesta Engine"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/Code0100Food/3DEngine", 0, SW_SHOWMAXIMIZED);
+	}
+	ImGui::Text("Made by:");
+	if (ImGui::MenuItem("- Eric Sola"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/HeladodePistacho", 0, SW_SHOWMAXIMIZED);
+	}
+	if (ImGui::MenuItem("- Ferran Martin"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/ferranmartinvila", 0, SW_SHOWMAXIMIZED);
+	}
 
-	ImGui::Text("This engine uses:");
-	ImGui::Text("-SDL version: %i.%i.%i", sdl_version.major, sdl_version.minor, sdl_version.patch);
-	ImGui::Text("-MathGeoLib version: 1.5");
-	ImGui::Text("-ImGui version: %s", ImGui::GetVersion());
-	ImGui::Text("-Bullet version: %i", btGetVersion());
-	ImGui::Text("-Parson");
-	ImGui::Text("-DevIL: %i", ilGetInteger(IL_VERSION_NUM));
-
-	ImGui::Text("\nWe don't own any of these libraries and are not made by us");
-	ImGui::Text("The engine is under the MIT License");
-	
 	ImGui::Separator();
-	ImGui::BulletText("Alexis Cosano Rodriguez");
-	ImGui::SameLine();
-	if (ImGui::Button("Info##f"))
+	ImGui::TextColored(ImVec4(0, 1, 1, 100), "Project links");
+	if (ImGui::MenuItem("- Link to Particle System repository"))
 	{
-		ShellExecute(NULL, "open", "https://github.com/AlexisCosano", NULL, NULL, SW_SHOWNORMAL);
-	}
-	ImGui::BulletText("Francisco Ruiz Gimenez");
-	ImGui::SameLine();
-	if (ImGui::Button("Info##e"))
-	{
-		ShellExecute(NULL, "open", "https://github.com/botttos", NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/botttos/ParticleSystem", 0, SW_SHOWMAXIMIZED);
 	}
 
+	if (ImGui::MenuItem("- Link to the latest release"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/botttos/ParticleSystem/releases", 0, SW_SHOWMAXIMIZED);
+	}
+	ImGui::Separator();
+	ImGui::TextColored(ImVec4(0, 1, 0, 100), "=== Libraries used ===");
+	if (ImGui::MenuItem("- ImGui (v1.52)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/ocornut/imgui", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- Brofiler (v1.1.2)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://www.brofiler.com/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- Parson"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://kgabis.github.io/parson/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- MathGeoLib (v2.0)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://clb.demon.fi/MathGeoLib/nightly/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- mmgr"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://www.flipcode.com/archives/Presenting_A_Memory_Manager.shtml", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- Devil (v1.7.8)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", " http://openil.sourceforge.net", 0, SW_SHOWMAXIMIZED);
+	}
+
+	ImGui::AlignFirstTextHeightToWidgets();
+	ImGui::Text("You can download it from"); ImGui::SameLine();
+	if (ImGui::Button("here", ImVec2(40, 20)))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://www.stratos-ad.com/forums/index.php?topic=9897.0", 0, SW_SHOWMAXIMIZED);
+	}
+	ImGui::Text("Just look for the first comment from the user:"); ImGui::SameLine();
+	ImGui::TextColored(ImVec4(1, 1, 0, 100), "Astat");
+
+	if (ImGui::MenuItem("- Bullet (v2.84)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://bulletphysics.org/wordpress/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- Assimp (v3.3.1)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://assimp.sourceforge.net/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- Glew (v2.0.0)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "http://glew.sourceforge.net/", 0, SW_SHOWMAXIMIZED);
+	}
+	if (ImGui::MenuItem("- GLUT (v3.7)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://www.opengl.org/resources/libraries/glut/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- SDL (v2.0.6)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://www.libsdl.org/", 0, SW_SHOWMAXIMIZED);
+	}
+
+	if (ImGui::MenuItem("- SDL_mixer (v2.0.0)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://www.libsdl.org/projects/SDL_mixer/", 0, SW_SHOWMAXIMIZED);
+	}
+	ImGui::Separator();
+	ImGui::Text("=== License ===");
+	ImGui::TextWrapped("This Particle System is under The MIT License, see LICENSE for more information.");
+	if (ImGui::MenuItem("- The MIT License (MIT)"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://opensource.org/licenses/mit-license.php", 0, SW_SHOWMAXIMIZED);
+	}
+
+	ImGui::Separator();
+	if (ImGui::BeginMenu("- OpenGL info"))
+	{
+		ImGui::Text("Vendor: ");
+		ImGui::SameLine();
+		ImGui::TextColored(ImVec4(0, 1, 0, 100), "%s", glGetString(GL_VENDOR));
+
+		ImGui::Text("Renderer: ");
+		ImGui::SameLine();
+		ImGui::TextColored(ImVec4(0, 1, 0, 100), "%s", glGetString(GL_RENDERER));
+
+		ImGui::Text("OpenGL version supported: ");
+		ImGui::SameLine();
+		ImGui::TextColored(ImVec4(0, 1, 0, 100), "%s", glGetString(GL_VERSION));
+
+		ImGui::Text("GLSL: ");
+		ImGui::SameLine();
+		ImGui::TextColored(ImVec4(0, 1, 0, 100), "%s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+		ImGui::EndMenu();
+	}
 	ImGui::End();
 }
 
