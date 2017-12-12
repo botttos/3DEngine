@@ -583,7 +583,7 @@ void ModuleImgui::BlitAboutWindow()
 	ImGui::SetNextWindowSize(ImVec2(500, 500));
 	ImGui::Begin("About us", &show_about_window, ImGuiWindowFlags_::ImGuiWindowFlags_NoResize);
 
-	ImGui::Text("Welcome to Coolgine3D");
+	ImGui::Text("Welcome to Particle System");
 	ImGui::Text("This is an engine made as a part of a college degree");
 	ImGui::Text("We are: Alexis Cosano and Francisco Ruiz\n\n");
 
@@ -599,13 +599,13 @@ void ModuleImgui::BlitAboutWindow()
 	ImGui::Text("The engine is under the MIT License");
 	
 	ImGui::Separator();
-	ImGui::BulletText("Alexis Cosano Rodríguez");
+	ImGui::BulletText("Alexis Cosano Rodriguez");
 	ImGui::SameLine();
 	if (ImGui::Button("Info##f"))
 	{
 		ShellExecute(NULL, "open", "https://github.com/AlexisCosano", NULL, NULL, SW_SHOWNORMAL);
 	}
-	ImGui::BulletText("Francisco Ruiz Giménez");
+	ImGui::BulletText("Francisco Ruiz Gimenez");
 	ImGui::SameLine();
 	if (ImGui::Button("Info##e"))
 	{

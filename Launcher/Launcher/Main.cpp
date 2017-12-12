@@ -48,7 +48,7 @@ bool WindowInit(SDL_Window** window, SDL_Surface** screen_surface)
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-		*window = SDL_CreateWindow("Fiesta Engine Launcher", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w_width, w_height, flags);
+		*window = SDL_CreateWindow("Particle System Launcher", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w_width, w_height, flags);
 
 		
 
@@ -302,7 +302,7 @@ int main(int argc, char ** argv)
 	string json_url = "https://raw.githubusercontent.com/Code0100Food/3DEngine/master/Engine/Data/DATA/update.json";
 	JSON_Value* reader = json_parse_file("DATA/update.json");
 	JSON_Object* root_object = json_value_get_object(reader);
-	JSON_Object* update_data = json_object_dotget_object(root_object, "Fiesta Engine");
+	JSON_Object* update_data = json_object_dotget_object(root_object, "Particle System");
 
 	//Save the actual version
 	string str_version = json_object_get_string(update_data, "version");
@@ -332,7 +332,7 @@ int main(int argc, char ** argv)
 		//Look new update
 		JSON_Value* new_reader = json_parse_file("new_update.json");
 		const JSON_Object* new_root_object = json_value_get_object(new_reader);
-		const JSON_Object* new_update_data = json_object_dotget_object(new_root_object, "Fiesta Engine");
+		const JSON_Object* new_update_data = json_object_dotget_object(new_root_object, "Particle System");
 		string str_new_version = json_object_get_string(new_update_data, "version");
 		new_version = GetVersion(str_new_version);
 
@@ -371,8 +371,8 @@ int main(int argc, char ** argv)
 
 		//Launcher UI
 		ImGui::SetNextWindowPos(ImVec2(0, 0));
-		ImGui::Begin("Welcome to the Fiesta Engine Launcher",0, ImVec2(500, 500),0.0f,ImGuiWindowFlags_::ImGuiWindowFlags_NoMove| ImGuiWindowFlags_::ImGuiWindowFlags_NoResize | ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_::ImGuiWindowFlags_NoScrollbar);
-		ImGui::TextColored(ImVec4(0.2, 0.5, 0.8, 1.0), "Welcome to the Fiesta Engine Launcher!");
+		ImGui::Begin("Welcome to the Particle System Launcher",0, ImVec2(500, 500),0.0f,ImGuiWindowFlags_::ImGuiWindowFlags_NoMove| ImGuiWindowFlags_::ImGuiWindowFlags_NoResize | ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_::ImGuiWindowFlags_NoScrollbar);
+		ImGui::TextColored(ImVec4(0.2, 0.5, 0.8, 1.0), "Welcome to the Particle System Launcher");
 		ImGui::SameLine();
 		ImGui::TextColored(ImVec4(0.0, 0.8, 0.8, 1.0), "v%i.%i.%i", current_version.major, current_version.minor, current_version.patch);
 		if (outdated)
@@ -414,17 +414,17 @@ int main(int argc, char ** argv)
 		ImGui::BulletText("A 3D engine developed by two students of video games development.");
 		ImGui::BulletText("This code is under the MIT License.");
 		ImGui::Separator();
-		ImGui::BulletText("Ferran Martin Vila");
+		ImGui::BulletText("Alexis Cosano Rodriguez");
 		ImGui::SameLine();
 		if (ImGui::Button("Info##f"))
 		{
-			ShellExecute(NULL, "open", "https://github.com/ferranmartinvila", NULL, NULL, SW_SHOWNORMAL);
+			ShellExecute(NULL, "open", "https://github.com/AlexisCosano", NULL, NULL, SW_SHOWNORMAL);
 		}
-		ImGui::BulletText("Eric Sola Vila");
+		ImGui::BulletText("Francisco Ruiz Gimenez");
 		ImGui::SameLine();
 		if (ImGui::Button("Info##e"))
 		{
-			ShellExecute(NULL, "open", "https://github.com/HeladodePistacho", NULL, NULL, SW_SHOWNORMAL);
+			ShellExecute(NULL, "open", "https://github.com/botttos", NULL, NULL, SW_SHOWNORMAL);
 		}
 		ImGui::End();
 
