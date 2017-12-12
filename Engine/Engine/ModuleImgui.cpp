@@ -289,17 +289,12 @@ update_status ModuleImgui::Update(float dt)
 
 		if (ImGui::MenuItem("GitHub Repository"))
 		{
-			App->RequestBrowser("https://github.com/Code0100Food/3DEngine");
+			App->RequestBrowser("https://github.com/botttos/ParticleSystem");
 		}
 
 		if (ImGui::MenuItem("Download Last"))
 		{
-			App->RequestBrowser("https://github.com/Code0100Food/3DEngine/releases/tag/0.1.5");
-		}
-
-		if (ImGui::MenuItem("Report a Bug"))
-		{
-			App->RequestBrowser("https://github.com/Code0100Food/3DEngine/issues");
+			App->RequestBrowser("https://github.com/botttos/ParticleSystem/releases/tag/Assignment2");
 		}
 
 		if (ImGui::MenuItem("About"))
