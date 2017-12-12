@@ -1,19 +1,26 @@
-# Fiesta Engine
-A 3D engine developed by two students of videogames development.
-This code is under the MIT License
+# Particle System
+A Particle System developed by [Alexis Cosano](https://github.com/AlexisCosano) and [Francisco Ruiz](https://github.com/botttos).
+This code is under the [MIT License](https://opensource.org/licenses/MIT).
 
-- Libraries Used:
-   MathGeoLib -> http://clb.demon.fi/MathGeoLib/nightly/
-   ImGui -> https://github.com/ocornut/imgui
-   Bullet -> http://bulletphysics.org
-   Sdl -> http://www.libsdl.org/
-   Glew -> https://github.com/nigels-com/glew
-   cURL -> https://curl.haxx.se/
+We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEngine), developed by [Eric Sol√†](https://github.com/HeladodePistacho) and [Ferran Mart√≠n](https://github.com/ferranmartinvila).
+*The Fiesta Engine is under the MIT license.*
 
-Bullet and sdl are suggested to zlib license. -> http://www.zlib.net/zlib_license.html
-ImGui is suggested to MIT License
-MathGeoLib is suggested to Apache 2 License. -> http://www.apache.org/licenses/LICENSE-2.0.html
-All those Libraries are not created by us.
+---
+
+- Libraries used:
+   - [MathGeoLib](http://clb.demon.fi/MathGeoLib/nightly/) 
+   - [ImGui](https://github.com/ocornut/imgui)
+   - [Bullet](http://bulletphysics.org)
+   - [Sdl](http://www.libsdl.org/)
+   - [Glew](https://github.com/nigels-com/glew)
+   - [cURL](https://curl.haxx.se/)
+
+Bullet and sdl are under the [zlib license](http://www.zlib.net/zlib_license.html).
+ImGui is under the MIT License.
+MathGeoLib is under the [Apache 2 License](http://www.apache.org/licenses/LICENSE-2.0.html).
+
+*We do not own any of the rights of these libraries.*
+
 
 # Instructions
 
@@ -54,7 +61,7 @@ You can acceed to all the UI elements using the top bar menu that have five sub 
 
 - Game Objects:
 		- Empty: Create a empty object
-		- Cube,SphereÖ: Create a primitive
+		- Cube,Sphere‚Ä¶: Create a primitive
 
 - View:
 		- Hierarchy: Show you the states of the objects loaded in the scene.
@@ -69,11 +76,11 @@ You can acceed to all the UI elements using the top bar menu that have five sub 
 		- About: Show basic information about the engine (Libraries, license, authors,...)
 
 ### Camera movement:
-- Right click turns on ìWASDî fps-like movement
+- Right click turns on ‚ÄúWASD‚Äù fps-like movement
 - Mouse wheel zoom in and out
 - Mouse wheel pressed moves camera up, down, left and right
 - Alt+Left click orbit the object
-- Pressing ìfî focus the camera around the geometry
+- Pressing ‚Äúf‚Äù focus the camera around the geometry
 
 ### Console:
 
@@ -82,7 +89,7 @@ Console is initially closed.
 To open/close the console pulse the grave key.
 Console shows information of the engine operations and can handle some basic input.(help,quit,clear).
 
-To see all the console commands, you can open the console header in the configuration window or enter ìhelpî in the console
+To see all the console commands, you can open the console header in the configuration window or enter ‚Äúhelp‚Äù in the console
 
 ### Resources Manager:
 
@@ -94,11 +101,11 @@ Resources manager generate all the necessary files and folders to manage the use
 
 To import a file drop it to the engine window or place it on assets before the start of the engine.
 
-If a file is removed from assets the imported resources arenít deleted from the library so you can already use it in the engine.
+If a file is removed from assets the imported resources aren‚Äôt deleted from the library so you can already use it in the engine.
 
 When you edit a file the resource manager updates the related resources and modify them.
 
-If a resource is not used in the scene itís released from the memory till some gameobject use it.
+If a resource is not used in the scene it‚Äôs released from the memory till some gameobject use it.
 
 ### Launcher:
 
@@ -129,9 +136,9 @@ To modify Camera FOV or other settings go to "View" -> "Configuration" -> "Camer
 
 ### Octree
 
-To calculate the octree go to ìViewî -> ìConfigurationî -> ìSceneî -> Recalculate
+To calculate the octree go to ‚ÄúView‚Äù -> ‚ÄúConfiguration‚Äù -> ‚ÄúScene‚Äù -> Recalculate
 
-Octree will be filled with static objects. To set a static objects check the inspector ìStaticî checkbox. The childs of a static object become static.
+Octree will be filled with static objects. To set a static objects check the inspector ‚ÄúStatic‚Äù checkbox. The childs of a static object become static.
 
 
 
@@ -247,12 +254,3 @@ When Pressing F1 debug mode is active and you will see the mouse picking ray and
 		Simple UI for testing a random number generator
 		Simple UI for testing intersections between some geometrical figures
 		Console ready to use, still does nothing
-
-
-# Owners
-Eric Sol‡
-Ferran MartÌn
-
-Github Repository: 	https://github.com/Code0100Food/3DEngine
-Assigment 2 Release:	https://github.com/Code0100Food/3DEngine/releases/tag/Assignment2	
-
