@@ -450,13 +450,13 @@ void ModuleScene::BlitComponentsWindow(GameObject* target)
 
 		if (target->FindComponent(COMPONENT_TYPE::COMP_PARTICLE) == nullptr)
 		{
-			bool selected = ImGui::Selectable("Particle Emmisor");
+			bool selected = ImGui::Selectable("Particle Emitter");
 
 			if (selected)
 			{
 				App->audio->PlayFxForInput(FX_ID::CHECKBOX_FX);
 
-				//Generate a component camera
+				//Generate a component particle
 				target->CreateComponent(COMPONENT_TYPE::COMP_PARTICLE);
 				show_components_window = false;
 			}
