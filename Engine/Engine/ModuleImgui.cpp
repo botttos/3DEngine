@@ -588,9 +588,9 @@ void ModuleImgui::BlitAboutWindow()
 	ImGui::SetNextWindowSize(ImVec2(500, 500));
 	ImGui::Begin("About us", &show_about_window, ImGuiWindowFlags_::ImGuiWindowFlags_NoResize);
 
-	ImGui::Text("Welcome to Fiesta Engine");
-	ImGui::Text("This is an engine made by educational purpouse");
-	ImGui::Text("We are: Eric Sola and Ferran Martin\n\n");
+	ImGui::Text("Welcome to Coolgine3D");
+	ImGui::Text("This is an engine made as a part of a college degree");
+	ImGui::Text("We are: Alexis Cosano and Francisco Ruiz\n\n");
 
 	ImGui::Text("This engine uses:");
 	ImGui::Text("-SDL version: %i.%i.%i", sdl_version.major, sdl_version.minor, sdl_version.patch);
@@ -600,21 +600,21 @@ void ModuleImgui::BlitAboutWindow()
 	ImGui::Text("-Parson");
 	ImGui::Text("-DevIL: %i", ilGetInteger(IL_VERSION_NUM));
 
-	ImGui::Text("\nWe don't own all this libraries and are not made by us");
-	ImGui::Text("The engine is under MIT License");
+	ImGui::Text("\nWe don't own any of these libraries and are not made by us");
+	ImGui::Text("The engine is under the MIT License");
 	
 	ImGui::Separator();
-	ImGui::BulletText("Ferran Martin Vila");
+	ImGui::BulletText("Alexis Cosano Rodríguez");
 	ImGui::SameLine();
 	if (ImGui::Button("Info##f"))
 	{
-		ShellExecute(NULL, "open", "https://github.com/ferranmartinvila", NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, "open", "https://github.com/AlexisCosano", NULL, NULL, SW_SHOWNORMAL);
 	}
-	ImGui::BulletText("Eric Sola Vila");
+	ImGui::BulletText("Francisco Ruiz Giménez");
 	ImGui::SameLine();
 	if (ImGui::Button("Info##e"))
 	{
-		ShellExecute(NULL, "open", "https://github.com/HeladodePistacho", NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, "open", "https://github.com/botttos", NULL, NULL, SW_SHOWNORMAL);
 	}
 
 	ImGui::End();
