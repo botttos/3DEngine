@@ -50,6 +50,8 @@ bool ComponentParticle::Start()
 		//Deceleration
 		particles[i].deceleration = 0.0025;
 
+		//Life time
+		particles[i].life_time.Start();
 	}
 	modified_particle = particles[0];
 	return true;
@@ -58,7 +60,6 @@ bool ComponentParticle::Start()
 bool ComponentParticle::Update(float dt)
 {
 	Draw();
-
 	for (int i = 0; i < particle_count; i++)
 	{
 		//Set the color of the particle
@@ -74,7 +75,7 @@ bool ComponentParticle::Update(float dt)
 		//Rotate particle
 		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 
-		if (particles[i].y_pos < -5 )
+		if (particles[i].life_time.ReadSec() > particle_lifetime)
 			ResetParticles(particles[i]);
 	}
 	return true;
@@ -141,6 +142,9 @@ void ComponentParticle::ResetParticles(Particle& p)
 
 	//Scale 
 	p.scale = modified_particle.scale;
+
+	//Life Time
+	p.life_time.Start();
 }
 
 void ComponentParticle::ApplyParticleChanges()
@@ -183,8 +187,13 @@ void ComponentParticle::BlitComponentInspector()
 	//Particle norm Scale
 	ImGui::Text("Scale");
 	sprintf(name, "scale## %i", id);
-	if (ImGui::DragFloat(name, &modified_particle.scale, 0.2f, 0.1f));
+	if (ImGui::DragFloat(name, &modified_particle.scale, 0.1f, 0.1f));
 	
+	//Life time
+	ImGui::Text("Life time");
+	sprintf(name, "lifetime## %i", id);
+	if (ImGui::DragFloat(name, &particle_lifetime, 0.1f, 0.001f));
+
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
 }

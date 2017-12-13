@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "ComponentMaterial.h"
+#include "Timer.h"
 
 struct Particle
 {
@@ -22,6 +23,8 @@ struct Particle
 	float acceleration;
 	float deceleration;
 	float scale;
+
+	Timer life_time;
 };
 
 class ComponentParticle : public Component
@@ -44,6 +47,8 @@ private:
 	uint texture_id;
 	Particle particles[500];
 	Particle modified_particle;
+
+	float particle_lifetime = 1;
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
