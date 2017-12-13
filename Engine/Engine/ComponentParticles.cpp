@@ -3,6 +3,9 @@
 #include "SDL/include/SDL_opengl.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "GameObject.h"
+#include "MathGeoLib/Math/MathAll.h"
+#include "ComponentTransform.h"
 
 ComponentParticle::ComponentParticle()
 {
@@ -19,9 +22,12 @@ bool ComponentParticle::Start()
 	for (int i = 0; i < particle_count; i++)
 	{
 		//Position
-		particles[i].x_pos = 0;
-		particles[i].y_pos = -5;
-		particles[i].z_pos = -5;
+		ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+		math::float3 position = comp_transform->GetPosition();
+
+		particles[i].x_pos = position.x;
+		particles[i].y_pos = position.y;
+		particles[i].z_pos = position.z;
 
 		//Movement with random
 		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
@@ -120,9 +126,12 @@ bool ComponentParticle::Draw()
 void ComponentParticle::ResetParticles(Particle& p)
 {
 	//Position
-	p.x_pos = 0;
-	p.y_pos = -5;
-	p.z_pos = -5;
+	ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+	math::float3 position = comp_transform->GetPosition();
+	
+	p.x_pos = position.x;
+	p.y_pos = position.y;
+	p.z_pos = position.z;
 
 	//Set RGB colors
 	p.red = 1;
