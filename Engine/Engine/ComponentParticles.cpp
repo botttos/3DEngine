@@ -51,6 +51,7 @@ bool ComponentParticle::Start()
 		particles[i].deceleration = 0.0025;
 
 	}
+	modified_particle = particles[0];
 	return true;
 }
 
@@ -129,9 +130,9 @@ void ComponentParticle::ResetParticles(Particle& p)
 	ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
 	math::float3 position = comp_transform->GetPosition();
 	
-	p.x_pos = position.x;
-	p.y_pos = position.y;
-	p.z_pos = position.z;
+	p.x_pos = position.x + modified_particle.x_pos;
+	p.y_pos = position.y + modified_particle.y_pos;
+	p.z_pos = position.z + modified_particle.z_pos;
 
 	//Set RGB colors
 	p.red = 1;
@@ -145,9 +146,53 @@ void ComponentParticle::ResetParticles(Particle& p)
 	p.acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 	//Deceleration
 	p.deceleration = 0.0025;
+
+	//Scale 
+	p.scale = modified_particle.scale;
+}
+
+void ComponentParticle::ApplyParticleChanges()
+{
+	for (int i = 0; i < particle_count; i++)
+	{
+		//Position
+		particles[i].x_pos += modified_particle.x_pos;
+		particles[i].y_pos += modified_particle.y_pos;
+		particles[i].z_pos += modified_particle.z_pos;
+
+		//Scale
+		particles[i].scale = modified_particle.scale;
+	}
 }
 
 void ComponentParticle::BlitComponentInspector()
 {
+	ImGui::Separator();
 
+	ImGui::Checkbox("##particle_component", &actived);
+	ImGui::SameLine();
+	ImGui::TextColored(ImVec4(1.0f, 0.64f, 0.0f, 1.0f), "Particle Emmisor");
+	ImGui::SameLine();
+
+	//Particle Position
+	ImGui::Text("Position ");
+	ImGui::SameLine();
+	ImGui::PushItemWidth(50);
+	char name[200];
+	sprintf(name, "X## %i", id);
+	if (ImGui::DragFloat(name, &modified_particle.x_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+	ImGui::SameLine();
+	sprintf(name, "Y## %i", id);
+	if (ImGui::DragFloat(name, &modified_particle.y_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+	ImGui::SameLine();
+	sprintf(name, "Z## %i", id);
+	if (ImGui::DragFloat(name, &modified_particle.z_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+
+	//Particle norm Scale
+	ImGui::Text("Scale");
+	sprintf(name, "scale## %i", id);
+	if (ImGui::DragFloat(name, &modified_particle.scale, 0.2f, 0.1f));
+	
+	/*if (ImGui::Button("Save Changes"))
+		ApplyParticleChanges();*/
 }

@@ -9,19 +9,19 @@
 
 struct Particle
 {
-	double x_pos;
-	double y_pos;
-	double z_pos;
-	double x_mov;
-	double y_mov;
-	double z_mov;
-	double red;
-	double green;
-	double blue;
-	double direction;
-	double acceleration;
-	double deceleration;
-	double scale;
+	float x_pos;
+	float y_pos;
+	float z_pos;
+	float x_mov;
+	float y_mov;
+	float z_mov;
+	float red;
+	float green;
+	float blue;
+	float direction;
+	float acceleration;
+	float deceleration;
+	float scale;
 };
 
 class ComponentParticle : public Component
@@ -36,12 +36,14 @@ public:
 	
 	//Utility
 	void ResetParticles(Particle& p);
+	void ApplyParticleChanges();
 	void BlitComponentInspector();
 	
 private:
 	const int particle_count = 500;
 	uint texture_id;
 	Particle particles[500];
+	Particle modified_particle;
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
