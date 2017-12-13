@@ -76,7 +76,7 @@ bool ComponentParticle::Update(float dt)
 		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 
 		if (particles[i].life_time.ReadSec() > particle_lifetime)
-			ResetParticles(particles[i]);
+			ResetParticle(particles[i]);
 	}
 	return true;
 }
@@ -125,7 +125,7 @@ bool ComponentParticle::Draw()
 	return false;
 }
 
-void ComponentParticle::ResetParticles(Particle& p)
+void ComponentParticle::ResetParticle(Particle& p)
 {
 	//Position
 	ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);

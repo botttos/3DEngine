@@ -38,7 +38,7 @@ public:
 	bool Draw();
 	
 	//Utility
-	void ResetParticles(Particle& p);
+	void ResetParticle(Particle& p);
 	void ApplyParticleChanges();
 	void BlitComponentInspector();
 	
@@ -49,6 +49,15 @@ private:
 	Particle modified_particle;
 
 	float particle_lifetime = 1;
+
+	/*Modificable parameters:
+	speed
+	lifetime
+	gravity
+	max particles
+	emission over time
+	velocity over lifetime (x, y, z axis)
+	*/
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
