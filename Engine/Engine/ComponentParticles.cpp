@@ -134,14 +134,6 @@ void ComponentParticle::ResetParticles(Particle& p)
 	p.y_pos = position.y + modified_particle.y_pos;
 	p.z_pos = position.z + modified_particle.z_pos;
 
-	//Set RGB colors
-	p.red = 1;
-	p.green = 1;
-	p.blue = 1;
-
-	//Initial rotation
-	p.direction = 0;
-
 	//Acceleration with random
 	p.acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
 	//Deceleration
