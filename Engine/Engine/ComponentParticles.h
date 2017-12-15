@@ -37,7 +37,7 @@ public:
 	bool Update(float dt);
 	bool Draw();
 	
-	//Utility
+	//Utility ------------------------------
 	void ResetParticle(Particle& p);
 	void BlitComponentInspector();
 	
@@ -46,11 +46,15 @@ private:
 	Particle particles[500];
 	Particle modified_particle;
 
-	//Modificable parameters
+	//Modificable parameters ----------------
 	float p_lifetime = 1;
 	int p_count = 500; //Number of particles
 	float p_deceleration = 0;
 	float p_acceleration = 0;
+	//Emission over time
+	Timer emission_ot;
+	float p_emission_ot = 0.8;
+	int particles_on_scene = 0;
 
 	/*Modificable parameters:
 	speed

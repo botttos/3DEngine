@@ -19,6 +19,8 @@ bool ComponentParticle::Start()
 {
 	//Pick texture
 	//id_texture =
+	emission_ot.Start();
+	
 	for (int i = 0; i < p_count; i++)
 	{
 		//Position
@@ -59,8 +61,18 @@ bool ComponentParticle::Start()
 
 bool ComponentParticle::Update(float dt)
 {
+	// (1 - p_emission_ot) is used to invert the Emission over time parameter on UI
+	if (emission_ot.ReadSec() > (1 - p_emission_ot)) 
+	{
+		particles_on_scene++;
+		emission_ot.Start();
+	}
+
+	//Draw particles
 	Draw();
-	for (int i = 0; i < p_count; i++)
+	
+	//Update particles
+	for (int i = 0; i < particles_on_scene; i++)
 	{
 		//Set the color of the particle
 		glColor3f(particles[i].red, particles[i].green, particles[i].blue);
@@ -76,14 +88,17 @@ bool ComponentParticle::Update(float dt)
 		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
 		if (particles[i].life_time.ReadSec() > p_lifetime)
+		{
+			particles_on_scene--;
 			ResetParticle(particles[i]);
+		}	
 	}
 	return true;
 }
 
 bool ComponentParticle::Draw()
 {
-	for (int i = 0; i < p_count; i++)
+	for (int i = 0; i < particles_on_scene; i++)
 	{
 		glPushMatrix();
 
@@ -196,6 +211,11 @@ void ComponentParticle::BlitComponentInspector()
 	ImGui::Text("Acceleration");
 	sprintf(name, "acceleration## %i", id);
 	if (ImGui::DragFloat(name, &p_acceleration, 0.0001f, 0.001f));
+
+	//Emission over time
+	ImGui::Text("Emission over time");
+	sprintf(name, "emission over time## %i", id);
+	if (ImGui::DragFloat(name, &p_emission_ot, 0.01f, 0.001f));
 
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
