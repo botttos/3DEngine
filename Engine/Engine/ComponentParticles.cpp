@@ -19,7 +19,7 @@ bool ComponentParticle::Start()
 {
 	//Pick texture
 	//id_texture =
-	for (int i = 0; i < particle_count; i++)
+	for (int i = 0; i < p_count; i++)
 	{
 		//Position
 		ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
@@ -30,8 +30,8 @@ bool ComponentParticle::Start()
 		particles[i].z_pos = position.z;
 
 		//Movement with random
-		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
-		particles[i].z_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
+		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+		particles[i].z_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
 		//Set RGB colors
 		particles[i].red = 1;
@@ -45,7 +45,7 @@ bool ComponentParticle::Start()
 		particles[i].direction = 0;
 
 		//Acceleration with random
-		particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) -(((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
+		particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) -(((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
 		//Deceleration
 		particles[i].deceleration = 0.0025;
@@ -60,22 +60,22 @@ bool ComponentParticle::Start()
 bool ComponentParticle::Update(float dt)
 {
 	Draw();
-	for (int i = 0; i < particle_count; i++)
+	for (int i = 0; i < p_count; i++)
 	{
 		//Set the color of the particle
 		glColor3f(particles[i].red, particles[i].green, particles[i].blue);
 
 		//Move particle
-		particles[i].y_pos += (particles[i].acceleration - particles[i].deceleration);
-		particles[i].deceleration += 0.0025;
+		particles[i].y_pos += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
+		particles[i].deceleration -= (0.000025 + p_deceleration);
 
 		particles[i].x_pos += particles[i].x_mov;
 		particles[i].z_pos += particles[i].z_mov;
 
 		//Rotate particle
-		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
+		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
-		if (particles[i].life_time.ReadSec() > particle_lifetime)
+		if (particles[i].life_time.ReadSec() > p_lifetime)
 			ResetParticle(particles[i]);
 	}
 	return true;
@@ -83,7 +83,7 @@ bool ComponentParticle::Update(float dt)
 
 bool ComponentParticle::Draw()
 {
-	for (int i = 0; i < particle_count; i++)
+	for (int i = 0; i < p_count; i++)
 	{
 		glPushMatrix();
 
@@ -147,20 +147,6 @@ void ComponentParticle::ResetParticle(Particle& p)
 	p.life_time.Start();
 }
 
-void ComponentParticle::ApplyParticleChanges()
-{
-	for (int i = 0; i < particle_count; i++)
-	{
-		//Position
-		particles[i].x_pos += modified_particle.x_pos;
-		particles[i].y_pos += modified_particle.y_pos;
-		particles[i].z_pos += modified_particle.z_pos;
-
-		//Scale
-		particles[i].scale = modified_particle.scale;
-	}
-}
-
 void ComponentParticle::BlitComponentInspector()
 {
 	ImGui::Separator();
@@ -189,10 +175,27 @@ void ComponentParticle::BlitComponentInspector()
 	sprintf(name, "scale## %i", id);
 	if (ImGui::DragFloat(name, &modified_particle.scale, 0.1f, 0.1f));
 	
+	//Number of particles
+	ImGui::Text("Number of particles");
+	sprintf(name, "number of particles## %i", id);
+	if (ImGui::DragInt(name, &p_count, 1, 0.001f));
+	if(p_count > 500)
+		p_count = 500;
+
 	//Life time
 	ImGui::Text("Life time");
 	sprintf(name, "lifetime## %i", id);
-	if (ImGui::DragFloat(name, &particle_lifetime, 0.1f, 0.001f));
+	if (ImGui::DragFloat(name, &p_lifetime, 0.1f, 0.001f));
+
+	//Deceleration
+	ImGui::Text("Deceleration");
+	sprintf(name, "deceleration## %i", id);
+	if (ImGui::DragFloat(name, &p_deceleration, 0.0001f, 0.001f));
+
+	//Acceleration
+	ImGui::Text("Acceleration");
+	sprintf(name, "acceleration## %i", id);
+	if (ImGui::DragFloat(name, &p_acceleration, 0.0001f, 0.001f));
 
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/

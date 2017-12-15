@@ -39,16 +39,18 @@ public:
 	
 	//Utility
 	void ResetParticle(Particle& p);
-	void ApplyParticleChanges();
 	void BlitComponentInspector();
 	
 private:
-	const int particle_count = 500;
 	uint texture_id;
 	Particle particles[500];
 	Particle modified_particle;
 
-	float particle_lifetime = 1;
+	//Modificable parameters
+	float p_lifetime = 1;
+	int p_count = 500; //Number of particles
+	float p_deceleration = 0;
+	float p_acceleration = 0;
 
 	/*Modificable parameters:
 	speed
