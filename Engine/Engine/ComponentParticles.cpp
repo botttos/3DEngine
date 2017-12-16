@@ -241,7 +241,21 @@ void ComponentParticle::BlitComponentInspector()
 	if (ImGui::DragFloat(name, &p_emission_ot, 0.01f, 0.001f));
 
 	// Sprites
+	if (ImGui::MenuItem("Sprites"))
+	{
+		std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
+		uint size = all_materials.size();
+		if (size == 0)ImGui::Text("NULL_MATERIAL");
+		else
+		{
+			for (uint k = 0; k < size; k++)
+			{
+				all_materials[k]->BlitUI();
+			}
+		}
 
+		ImGui::EndMenu();
+	}
 
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
