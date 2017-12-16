@@ -27,9 +27,9 @@ bool ComponentParticle::Start()
 		ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
 		math::float3 position = comp_transform->GetPosition();
 
-		particles[i].x_pos = position.x;
-		particles[i].y_pos = position.y;
-		particles[i].z_pos = position.z;
+		particles[i].pos.x = position.x;
+		particles[i].pos.y = position.y;
+		particles[i].pos.z = position.z;
 
 		//Movement with random
 		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
@@ -78,11 +78,11 @@ bool ComponentParticle::Update(float dt)
 		glColor3f(particles[i].red, particles[i].green, particles[i].blue);
 
 		//Move particle
-		particles[i].y_pos += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
+		particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
 		particles[i].deceleration -= (0.000025 + p_deceleration);
 
-		particles[i].x_pos += particles[i].x_mov;
-		particles[i].z_pos += particles[i].z_mov;
+		particles[i].pos.x += particles[i].x_mov;
+		particles[i].pos.z += particles[i].z_mov;
 
 		//Rotate particle
 		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
@@ -103,7 +103,7 @@ bool ComponentParticle::Draw()
 		glPushMatrix();
 
 		//Translate x y z axis coords
-		glTranslatef(particles[i].x_pos, particles[i].y_pos, particles[i].z_pos);
+		glTranslatef(particles[i].pos.x, particles[i].pos.y, particles[i].pos.z);
 
 		//Rotate particle
 		glRotatef(particles[i].direction - 90, 0, 0, 1);
@@ -114,8 +114,9 @@ bool ComponentParticle::Draw()
 		//Disable depth texting and enable blend
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
+		glEnable(GL_TEXTURE_2D);
 
-		glBlendFunc(GL_DST_COLOR, GL_ZERO);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D, App->textures->garbage_icon);
 
 		//Drawing shape
@@ -133,6 +134,7 @@ bool ComponentParticle::Draw()
 		//Enable depth testing again and end particle changes
 		glEnable(GL_DEPTH_TEST);
 		glDisable(GL_BLEND);
+		glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glPopMatrix();
 
@@ -146,9 +148,9 @@ void ComponentParticle::ResetParticle(Particle& p)
 	ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
 	math::float3 position = comp_transform->GetPosition();
 	
-	p.x_pos = position.x + modified_particle.x_pos;
-	p.y_pos = position.y + modified_particle.y_pos;
-	p.z_pos = position.z + modified_particle.z_pos;
+	p.pos.x = position.x + modified_particle.pos.x;
+	p.pos.y = position.y + modified_particle.pos.y;
+	p.pos.z = position.z + modified_particle.pos.z;
 
 	//Acceleration with random
 	p.acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.005);
@@ -177,13 +179,13 @@ void ComponentParticle::BlitComponentInspector()
 	ImGui::PushItemWidth(50);
 	char name[200];
 	sprintf(name, "X## %i", id);
-	if (ImGui::DragFloat(name, &modified_particle.x_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+	if (ImGui::DragFloat(name, &modified_particle.pos.x, 0.5f, 0.0f, 0.0f, "%.1f"));
 	ImGui::SameLine();
 	sprintf(name, "Y## %i", id);
-	if (ImGui::DragFloat(name, &modified_particle.y_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+	if (ImGui::DragFloat(name, &modified_particle.pos.y, 0.5f, 0.0f, 0.0f, "%.1f"));
 	ImGui::SameLine();
 	sprintf(name, "Z## %i", id);
-	if (ImGui::DragFloat(name, &modified_particle.z_pos, 0.5f, 0.0f, 0.0f, "%.1f"));
+	if (ImGui::DragFloat(name, &modified_particle.pos.z, 0.5f, 0.0f, 0.0f, "%.1f"));
 
 	//Particle norm Scale
 	ImGui::Text("Scale");

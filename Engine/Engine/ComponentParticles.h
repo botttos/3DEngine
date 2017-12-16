@@ -7,12 +7,11 @@
 #include <math.h>
 #include "ComponentMaterial.h"
 #include "Timer.h"
+#include "MathGeoLib\Math\float3.h"
 
 struct Particle
 {
-	float x_pos;
-	float y_pos;
-	float z_pos;
+	math::float3 pos;
 	float x_mov;
 	float y_mov;
 	float z_mov;
