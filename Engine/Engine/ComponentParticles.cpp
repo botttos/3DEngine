@@ -241,20 +241,35 @@ void ComponentParticle::BlitComponentInspector()
 	if (ImGui::DragFloat(name, &p_emission_ot, 0.01f, 0.001f));
 
 	// Sprites
+	std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
+	bool opened = ImGui::TreeNodeEx("Sprites", ImGuiTreeNodeFlags_OpenOnDoubleClick);
+	if (opened)
+	{
+		uint size = all_materials.size();
+		for (uint k = 0; k < size; k++)
+		{
+			
+		}
+
+		ImGui::TreePop();
+	}
+	
+	
+	/*
 	if (ImGui::MenuItem("Sprites"))
 	{
 		std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
+		
 		uint size = all_materials.size();
-		if (size == 0)ImGui::Text("NULL_MATERIAL");
 		else
 		{
-			for (uint k = 0; k < size; k++)
+			for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
 			{
 				
 			}
 		}
 	}
-
+	*\
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
 }

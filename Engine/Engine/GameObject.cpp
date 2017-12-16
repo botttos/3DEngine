@@ -394,6 +394,7 @@ Component * GameObject::CloneComponent(const Component * target) const
 	case COMP_MATERIAL:				new_c = new ComponentMaterial(*(const ComponentMaterial*)target);			break;
 	case COMP_MESH_RENDERER:		new_c = new ComponentMeshRenderer(*(const ComponentMeshRenderer*)target);	break;
 	case COMP_CAMERA:				new_c = new ComponentCamera(*(const ComponentCamera*)target);				break;
+	case COMP_PARTICLE:				new_c = new ComponentParticle(*(const ComponentParticle*)target);				break;
 	case COMP_CUBE_MESH:			new_c = new ComponentCubeMesh(*(const ComponentCubeMesh*)target);			break;
 	case COMP_SPHERE_MESH:			new_c = new ComponentSphereMesh(*(const ComponentSphereMesh*)target);		break;
 	case COMP_CYLINDER_MESH:		new_c = new ComponentCylinderMesh(*(const ComponentCylinderMesh*)target);	break;
