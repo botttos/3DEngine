@@ -61,6 +61,9 @@ private:
 	float p_emission_ot = 0.8;
 	int particles_on_scene = 0;
 
+	//On pause
+	bool paused = false;
+
 	/*Modificable parameters:
 	speed
 	lifetime

@@ -69,30 +69,37 @@ bool ComponentParticle::Start()
 
 bool ComponentParticle::Update(float dt)
 {
-	// (1 - p_emission_ot) is used to invert the Emission over time parameter on UI
-	if (emission_ot.ReadSec() > (1 - p_emission_ot)) 
-	{
-		particles_on_scene++;
-		emission_ot.Start();
-	}
-
-	//Orientating particles
-	if (App->camera != nullptr)
-	{
-		ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
-		if (parent_pos != nullptr)
-		{
-			math::float3 look = App->camera->GetPosition() - parent_pos->GetPosition();
-			rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
-		}
-	}
-	
-	//Draw particles
-	Draw();
-	
-	//Update particles
 	if (App->scene->scene_paused == false)
 	{
+		if (paused == true)
+		{
+			paused = false;
+			emission_ot.Start();
+			for (int i = 0; i < particles_on_scene; i++)
+			{
+				particles[i].life_time.Start();
+			}
+		}
+		
+		// used 1- to invert the Emission over time parameter on UI
+		if (emission_ot.ReadSec() > (1 - p_emission_ot))
+		{
+			particles_on_scene++;
+			emission_ot.Start();
+		}
+
+		//Orientating particles
+		if (App->camera != nullptr)
+		{
+			ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+			if (parent_pos != nullptr)
+			{
+				math::float3 look = App->camera->GetPosition() - parent_pos->GetPosition();
+				rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+			}
+		}
+
+		//Update particles
 		for (int i = 0; i < particles_on_scene; i++)
 		{
 			//Set the color of the particle
@@ -115,10 +122,18 @@ bool ComponentParticle::Update(float dt)
 			}
 		}
 	}
-	else
+	else if (paused == false)
 	{
-
+		paused = true;
+		emission_ot.Stop();
+		for (int i = 0; i < particles_on_scene; i++)
+		{
+			particles[i].life_time.Stop();
+		}
 	}
+
+	//Draw particles
+	Draw();
 	return true;
 }
 
