@@ -78,5 +78,7 @@ public:
 	void		BlitConfigInfo();
 	Resource*	BlitResourceButtonsByType(RESOURCE_TYPE type);
 	void		BlitPrefabsMenu(GameObject* target);
+
+	ResourceMaterial* FindTextures() const;
 };
 #endif // !_RESOURCES_MANAGER_

@@ -59,13 +59,6 @@ private:
 	float p_emission_ot = 0.8;
 	int particles_on_scene = 0;
 
-	void AddParticleTexture(ResourceMaterial* tex, bool ad_ref = true);
-	std::vector<ResourceMaterial*> particle_textures;
-
-	//Save/Load Methods -----
-	bool Save(Serializer& array_root)const;
-	bool Load(Serializer& data, std::vector<std::pair<Component*, uint>>& links);
-
 	/*Modificable parameters:
 	speed
 	lifetime

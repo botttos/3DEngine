@@ -486,3 +486,16 @@ void ResourcesManager::BlitPrefabsMenu(GameObject* target)
 		ImGui::EndMenu();
 	}
 }
+
+ResourceMaterial* ResourcesManager::FindTextures() const
+{
+	ResourceMaterial* resource_material;
+	for (map<uint, Resource*>::const_iterator res = resources.begin(); res != resources.end(); res++)
+	{
+		if (res->second->GetResourceType() == MATERIAL_RESOURCE)
+		{
+			resource_material = (ResourceMaterial*)res->second;
+		}
+	}
+	return resource_material;
+}

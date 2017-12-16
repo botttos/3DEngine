@@ -131,16 +131,17 @@ void Component::RecalculateID()
 
 COMPONENT_TYPE StrToComponentType(const char * str)
 {
-	if (strcmp(str, "transformation") == 0)	return COMP_TRANSFORMATION;
-	if (strcmp(str, "mesh") == 0)			return COMP_MESH;
-	if (strcmp(str, "primitive_mesh") == 0)	return COMP_PRIMITIVE_MESH;
-	if (strcmp(str, "cube_mesh") == 0)		return COMP_CUBE_MESH;
-	if (strcmp(str, "sphere_mesh") == 0)	return COMP_SPHERE_MESH;
-	if (strcmp(str, "cylinder_mesh") == 0)	return COMP_CYLINDER_MESH;
-	if (strcmp(str, "frustum_mesh") == 0)	return COMP_FRUSTUM_MESH;
-	if (strcmp(str, "mesh_renderer") == 0)	return COMP_MESH_RENDERER;
-	if (strcmp(str, "material") == 0)		return COMP_MATERIAL;
-	if (strcmp(str, "camera") == 0)			return COMP_CAMERA;
+	if (strcmp(str, "transformation") == 0)		return COMP_TRANSFORMATION;
+	if (strcmp(str, "mesh") == 0)				return COMP_MESH;
+	if (strcmp(str, "primitive_mesh") == 0)		return COMP_PRIMITIVE_MESH;
+	if (strcmp(str, "cube_mesh") == 0)			return COMP_CUBE_MESH;
+	if (strcmp(str, "sphere_mesh") == 0)		return COMP_SPHERE_MESH;
+	if (strcmp(str, "cylinder_mesh") == 0)		return COMP_CYLINDER_MESH;
+	if (strcmp(str, "frustum_mesh") == 0)		return COMP_FRUSTUM_MESH;
+	if (strcmp(str, "mesh_renderer") == 0)		return COMP_MESH_RENDERER;
+	if (strcmp(str, "material") == 0)			return COMP_MATERIAL;
+	if (strcmp(str, "camera") == 0)				return COMP_CAMERA;
+	if (strcmp(str, "particle_emitter") == 0)	return COMP_PARTICLE;
 	return COMP_NONE;
 }
 
@@ -158,6 +159,7 @@ const char * ComponentTypeToStr(COMPONENT_TYPE type)
 	case COMP_MESH_RENDERER:	return "mesh_renderer";
 	case COMP_MATERIAL:			return "material";
 	case COMP_CAMERA:			return "camera";
+	case COMP_PARTICLE:			return "particle_emitter";
 	}
 	return "none";
 }
