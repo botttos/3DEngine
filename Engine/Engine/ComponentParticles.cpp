@@ -250,11 +250,9 @@ void ComponentParticle::BlitComponentInspector()
 		{
 			for (uint k = 0; k < size; k++)
 			{
-				all_materials[k]->BlitUI();
+				
 			}
 		}
-
-		ImGui::EndMenu();
 	}
 
 	/*if (ImGui::Button("Save Changes"))
