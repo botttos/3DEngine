@@ -585,8 +585,25 @@ void ModuleImgui::BlitAboutWindow()
 
 	// Testing
 	ImGui::TextColored(ImVec4(1, 1, 0, 100), "=== Particle System ===");
-	ImGui::Text("This is a particle system made by Alexis Cosano and Fran Ruiz,\ntwo college students from the CITM UPC, Terrassa.\nThe engine used as a base is:");
+	ImGui::Text("This is a particle system made by Alexis Cosano and Fran Ruiz,\ntwo college students from the CITM UPC, Terrassa.\nLink to repository:");
 	
+	if (ImGui::Button("- Particle System"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/botttos/ParticleSystem", 0, SW_SHOWMAXIMIZED);
+	}
+	ImGui::Text("Made by:");
+	if (ImGui::Button("- Fran Ruiz"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/botttos", 0, SW_SHOWMAXIMIZED);
+	}
+	if (ImGui::Button("- Alexis Cosano"))
+	{
+		ShellExecute(0, 0, "chrome.exe", "https://github.com/AlexisCosano", 0, SW_SHOWMAXIMIZED);
+	}
+
+	ImGui::Separator();
+	ImGui::Text("The engine used as a base is:");
+
 	if (ImGui::Button("- Fiesta Engine"))
 	{
 		ShellExecute(0, 0, "chrome.exe", "https://github.com/Code0100Food/3DEngine", 0, SW_SHOWMAXIMIZED);
