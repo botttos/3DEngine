@@ -6,6 +6,9 @@
 #include "GameObject.h"
 #include "MathGeoLib/Math/MathAll.h"
 #include "ComponentTransform.h"
+#include "ComponentCamera.h"
+#include "ModuleScene.h"
+#include "ModuleCamera3D.h"
 
 ComponentParticle::ComponentParticle()
 {
@@ -68,6 +71,15 @@ bool ComponentParticle::Update(float dt)
 		emission_ot.Start();
 	}
 
+	//Orientating particles
+
+	//ComponentTransform* camera = App->camera->GetPosition();
+	if (App->camera != nullptr)
+	{
+		math::float3 look = App->camera->GetPosition() - particles[0].pos;
+		rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look, math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+	}
+	
 	//Draw particles
 	Draw();
 	

@@ -8,6 +8,7 @@
 #include "ComponentMaterial.h"
 #include "Timer.h"
 #include "MathGeoLib\Math\float3.h"
+#include "MathGeoLib\Math\Quat.h"
 
 struct Particle
 {
@@ -41,6 +42,7 @@ public:
 	void BlitComponentInspector();
 	
 private:
+	math::Quat rotation = math::Quat::identity;
 	uint texture_id;
 	Particle particles[500];
 	Particle modified_particle;
