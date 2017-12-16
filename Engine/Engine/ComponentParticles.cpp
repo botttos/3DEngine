@@ -72,12 +72,14 @@ bool ComponentParticle::Update(float dt)
 	}
 
 	//Orientating particles
-
-	//ComponentTransform* camera = App->camera->GetPosition();
 	if (App->camera != nullptr)
 	{
-		math::float3 look = App->camera->GetPosition() - particles[0].pos;
-		rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look, math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+		ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+		if (parent_pos != nullptr)
+		{
+			math::float3 look = App->camera->GetPosition() - parent_pos->GetPosition();
+			rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+		}
 	}
 	
 	//Draw particles
@@ -97,7 +99,7 @@ bool ComponentParticle::Update(float dt)
 		particles[i].pos.z += particles[i].z_mov;
 
 		//Rotate particle
-		particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+		//particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
 		if (particles[i].life_time.ReadSec() > p_lifetime)
 		{
@@ -118,7 +120,10 @@ bool ComponentParticle::Draw()
 		glTranslatef(particles[i].pos.x, particles[i].pos.y, particles[i].pos.z);
 
 		//Rotate particle
-		glRotatef(particles[i].direction - 90, 0, 0, 1);
+		math::float3 vec_rotation = rotation.ToEulerXYZ();
+		glRotatef(RADTODEG*vec_rotation.x, 1, 0, 0);
+		glRotatef(RADTODEG*vec_rotation.y, 0, 1, 0);
+		glRotatef(RADTODEG*vec_rotation.z - 180, 0, 0, 1);
 
 		//Scale particle
 		glScalef(particles[i].scale, particles[i].scale, particles[i].scale);
