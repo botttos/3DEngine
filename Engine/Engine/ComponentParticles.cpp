@@ -12,6 +12,7 @@
 #include "ImporterManager.h"
 #include "ResourcesManager.h"
 #include "Serializer.h"
+#include "ModuleScene.h"
 
 
 ComponentParticle::ComponentParticle()
@@ -90,26 +91,33 @@ bool ComponentParticle::Update(float dt)
 	Draw();
 	
 	//Update particles
-	for (int i = 0; i < particles_on_scene; i++)
+	if (App->scene->scene_paused == false)
 	{
-		//Set the color of the particle
-		glColor3f(particles[i].red, particles[i].green, particles[i].blue);
-
-		//Move particle
-		particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
-		particles[i].deceleration -= (0.000025 + p_deceleration);
-
-		particles[i].pos.x += particles[i].x_mov;
-		particles[i].pos.z += particles[i].z_mov;
-
-		//Rotate particle
-		//particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
-
-		if (particles[i].life_time.ReadSec() > p_lifetime)
+		for (int i = 0; i < particles_on_scene; i++)
 		{
-			particles_on_scene--;
-			ResetParticle(particles[i]);
-		}	
+			//Set the color of the particle
+			glColor3f(particles[i].red, particles[i].green, particles[i].blue);
+
+			//Move particle
+			particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
+			particles[i].deceleration -= (0.000025 + p_deceleration);
+
+			particles[i].pos.x += particles[i].x_mov;
+			particles[i].pos.z += particles[i].z_mov;
+
+			//Rotate particle
+			//particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+
+			if (particles[i].life_time.ReadSec() > p_lifetime)
+			{
+				particles_on_scene--;
+				ResetParticle(particles[i]);
+			}
+		}
+	}
+	else
+	{
+
 	}
 	return true;
 }
@@ -161,6 +169,38 @@ bool ComponentParticle::Draw()
 
 	}
 	return false;
+}
+
+bool ComponentParticle::Save(Serializer & array_root) const
+{
+	bool ret = false;
+
+	//Serializer where all the data of the component is built
+	Serializer comp_data;
+
+	//Insert Component Type
+	ret = comp_data.InsertString("type", ComponentTypeToStr(COMP_PARTICLE));
+	//Insert component id
+	ret = comp_data.InsertInt("id", id);
+	//Insert actived
+	ret = comp_data.InsertBool("actived", actived);
+
+	//Save the built data in the components array
+	ret = array_root.InsertArrayElement(comp_data);
+
+	return ret;
+}
+
+bool ComponentParticle::Load(Serializer & data, std::vector<std::pair<Component*, uint>>& links)
+{
+	bool ret = true;
+
+	//Get component id
+	id = data.GetInt("id");
+	//Get actived
+	actived = data.GetBool("actived");
+
+	return ret;
 }
 
 void ComponentParticle::ResetParticle(Particle& p)

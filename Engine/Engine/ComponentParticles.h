@@ -38,7 +38,9 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool Draw();
-	
+	virtual bool Save(Serializer& array_root)const;
+	virtual bool Load(Serializer& data, std::vector<std::pair<Component*, uint>>& links);
+
 	//Utility ------------------------------
 	void ResetParticle(Particle& p);
 	void BlitComponentInspector();
