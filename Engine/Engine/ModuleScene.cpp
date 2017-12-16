@@ -712,6 +712,9 @@ void ModuleScene::PlayGame()
 {
 	if (scene_update_state == PLAY_SCENE_STATE || scene_update_state == PAUSE_SCENE_STATE)
 	{
+		if (scene_update_state == PAUSE_SCENE_STATE && scene_paused == true)
+			SetSceneState();
+
 		scene_update_state = EDIT_SCENE_STATE;
 		App->scene->CleanScene();
 		char str[50];
@@ -753,12 +756,16 @@ void ModuleScene::PauseGame()
 	{
 		scene_update_state = PLAY_SCENE_STATE;
 		App->textures->pause_icon_id = App->textures->pause_icon;
+		SetSceneState();
 		LOG("Game Unpaused!");
 	}
 	else
 	{
 		scene_update_state = PAUSE_SCENE_STATE;
 		App->textures->pause_icon_id = App->textures->pause_click_icon;
+		if(scene_paused == false)
+				SetSceneState();
+
 		LOG("Game Paused!");
 	}
 }
@@ -767,4 +774,14 @@ void ModuleScene::NextGameFrame()
 {
 	scene_update_state = NEXT_SCENE_STATE;
 	frame_passed = false;
+}
+
+bool ModuleScene::SetSceneState()
+{
+	if (scene_paused == true)
+		scene_paused = false;
+	else
+		scene_paused = true;
+
+	return scene_paused;
 }
