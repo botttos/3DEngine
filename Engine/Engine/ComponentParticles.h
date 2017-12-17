@@ -45,6 +45,7 @@ private:
 	void			OrientToCamera();
 	
 private:
+	//Particles data -----------------------
 	math::Quat		rotation = math::Quat::identity;
 	uint			texture_id;
 	Particle		particles[500];
@@ -58,14 +59,14 @@ private:
 	float			p_mov_x = 0;
 	float			p_mov_z = 0;
 	float			p_mov_y = 0;
-	//Emission over time
+	//Emission over time --------------------
 	Timer			emission_ot;
 	float			p_emission_ot = 0.8;
 	int				particles_on_scene = 0;
-	//On pause
+	//On pause ------------------------------
 	bool			paused = false;
 
-	//Firework
+	//Firework ------------------------------
 	Timer			explode_timer;		 //When firework explodes
 	float			time_to_explode = 1;
 	Timer			explosion_timer;	 //Time with explosion sprites
