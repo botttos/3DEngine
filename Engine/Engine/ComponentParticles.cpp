@@ -225,7 +225,7 @@ bool ComponentParticle::Draw()
 		//Disable depth texting and enable blend
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
-		glEnable(GL_TEXTURE_2D);
+		//glEnable(GL_TEXTURE_2D);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
@@ -253,7 +253,7 @@ bool ComponentParticle::Draw()
 		//Enable depth testing again and end particle changes
 		glEnable(GL_DEPTH_TEST);
 		glDisable(GL_BLEND);
-		glDisable(GL_TEXTURE_2D);
+		//glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glPopMatrix();
 	}
