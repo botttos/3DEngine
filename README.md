@@ -1,10 +1,15 @@
 # Particle System
 This project has been created as a product of a college term imparted at the CITM, UPC. We have created a particle system that lets the user create Particle Emitter components, move them freely around a scene, adding textures to the particles and tweaking them playing with the values found on the inspector (life time, speed over time...) to tweak them as desired. This Particle System has been developed by:
-- [Alexis Cosano](https://github.com/AlexisCosano)
+
+
 ![Alexis](https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAgpAAAAJDhhMDBhNTMzLTBjZWYtNDNiYi1iMTllLWM0Y2VlOTI0ZTRjMA.jpg)
 
-- [Francisco Ruiz](https://github.com/botttos)
+
+[Alexis Cosano](https://github.com/AlexisCosano)
+
 ![Fran](https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAcKAAAAJGJjZTA4MzRjLTA4MzktNDkzMC04ZTZjLTM1OTdhMjY2ZDIyMg.jpg)
+
+[Francisco Ruiz](https://github.com/botttos)
 
 Here's the link to the Particle System project's [repository](https://github.com/botttos/ParticleSystem) and a link to get the [latest release](https://github.com/botttos/ParticleSystem/releases).
 
@@ -16,7 +21,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 ## Francisco Ruiz
 - Particles behavior: making the particles seem alive using randomization methods.
 
-- Particle System structure.
+- Particle System code structure.
 
 - Draw particles with OpenGL.
 
@@ -24,7 +29,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 
 - Billboard implementation: making particles look to editor camera or main camera when the scene is playing.
 
-- Fireworks implementation: behavior, draw and textures bind.
+- Fireworks implementation: behavior and draw textures.
 
 ## Alexis Cosano
 
