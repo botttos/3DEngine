@@ -69,6 +69,7 @@ bool ModuleTextures::Start()
 	pause_click_icon = LoadTexture("pause_click_icon.png", "DATA/Textures/");
 	next_icon = LoadTexture("next_icon.png", "DATA/Textures/");
 	next_click_icon = LoadTexture("next_click_icon.png", "DATA/Textures/");
+	smoke_icon = LoadTexture("smoke2.png", "DATA/Textures/");
 
 	garbage_icon = LoadTexture("garbage_icon.png", "DATA/Textures/");
 	up_arrow_icon = LoadTexture("up_arrow_icon.png", "DATA/Textures/");
@@ -76,9 +77,11 @@ bool ModuleTextures::Start()
 
 	transform_icon = LoadTexture("transform_icon.png", "DATA/Textures/");
 
+	 
 	play_icon_id = play_icon;
 	pause_icon_id = pause_icon;
 	next_icon_id = next_icon;
+	smoke_id = smoke_icon;
 
 	return true;
 }

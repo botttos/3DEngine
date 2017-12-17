@@ -40,6 +40,7 @@ public:
 	uint pause_click_icon = 0;
 	uint next_icon = 0;
 	uint next_click_icon = 0;
+	uint smoke_icon = 0;
 
 	uint garbage_icon = 0;
 	uint up_arrow_icon = 0;
@@ -51,6 +52,9 @@ public:
 	uint play_icon_id = 0;
 	uint pause_icon_id = 0;
 	uint next_icon_id = 0;
+
+	//Particles 
+	uint smoke_id = 0;
 
 public:
 
