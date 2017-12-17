@@ -28,7 +28,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 
 - Draw particles with OpenGL.
 
-- Implement particle emissor as a component of the GameObjects.
+- Implement particle emitter as a component of the GameObjects.
 
 - Billboard implementation: making particles look to editor camera or main camera when the scene is playing.
 
@@ -40,11 +40,15 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 ![](https://i.gyazo.com/5fb6c9f9c856a7a8ed72e96c6dee1d34.gif)
 
 ## Alexis Cosano
+- Particle texturing.
+![](https://i.gyazo.com/a67521119aef000bc0c7b6920e30d882.gif)
+
+- Bug fixing.
 
 # Particle System Explanation
 
 ![](https://i.gyazo.com/a860a6af19b6f24b41c60e71b9fa5f05.gif)
-The engine uses a structure of GameObjects. To this GameObjects you can add different components such as Mesh, Transformation or Particle Emissor :)
+The engine uses a structure of GameObjects. To this GameObjects you can add different components such as Mesh, Transformation or Particle Emitter :)
 
 By default, all GameObjects have a component transformation that defines his position, scale, rotation, etc. into the 3D world. To implement this we use vectors and quaternions. You can modify this transformation from the interface or gizmos, like in other engines like Unity.
 
