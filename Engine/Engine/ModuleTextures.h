@@ -40,7 +40,8 @@ public:
 	uint pause_click_icon = 0;
 	uint next_icon = 0;
 	uint next_click_icon = 0;
-	uint smoke_icon = 0;
+	uint sparks_texture = 0;
+	uint explode_texture = 0;
 
 	uint garbage_icon = 0;
 	uint up_arrow_icon = 0;
@@ -54,8 +55,8 @@ public:
 	uint next_icon_id = 0;
 
 	//Particles 
-	uint smoke_id = 0;
-
+	uint sparks_id = 0;
+	uint explode_id = 0;
 public:
 
 	//Set Methods -----------

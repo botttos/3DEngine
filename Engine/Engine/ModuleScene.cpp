@@ -739,7 +739,8 @@ void ModuleScene::PlayGame()
 
 		App->textures->play_icon_id = App->textures->play_icon;
 		App->textures->pause_icon_id = App->textures->pause_icon;
-		App->textures->smoke_id = App->textures->smoke_icon;
+		App->textures->sparks_id = App->textures->sparks_texture;
+		App->textures->explode_id = App->textures->explode_texture;
 
 		ImGuiStyle* style = &ImGui::GetStyle();
 		style->Colors[ImGuiCol_ChildWindowBg].x += 0.06f;

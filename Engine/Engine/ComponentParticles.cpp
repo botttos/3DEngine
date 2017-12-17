@@ -89,7 +89,7 @@ bool ComponentParticle::Start()
 			particles[i].color.z = 1;
 
 			//Scale
-			particles[i].scale = 0.8;
+			particles[i].scale = 0.3;
 
 			//Initial rotation
 			particles[i].direction = 0;
@@ -105,7 +105,7 @@ bool ComponentParticle::Start()
 			particles[i].updated = false;
 		}
 		p_emission_ot = 1.2;
-		p_lifetime = 0.8;
+		p_lifetime = 1;
 		//Firework explode timers
 		explode_timer.Start();
 		time_to_explode = 1;
@@ -155,7 +155,10 @@ bool ComponentParticle::Update(float dt)
 					particles[i].pos = parent_pos;
 					particles[i].updated = true;
 				}
-				particles[i].pos.y -= 0.01;
+				particles[i].pos.y -= 0.05;
+
+				particles[i].pos.x += particles[i].mov.x;
+				particles[i].pos.z += particles[i].mov.z;	
 			}
 			else
 			{
@@ -232,13 +235,17 @@ bool ComponentParticle::Draw()
 		
 		//Alpha
 		glEnable(GL_ALPHA_TEST);
-		//TODO replace 0.5 with float alpha_value from material component
 		glAlphaFunc(GL_GREATER, 0.0);
-		if (particle_texture->GetMaterialID() != 0)
+		if (parent->IsFirework() == false)
 		{
-			glBindTexture(GL_TEXTURE_2D, particle_texture->GetMaterialID());
+			if (particle_texture->GetMaterialID() != 0)
+			{
+				glBindTexture(GL_TEXTURE_2D, particle_texture->GetMaterialID());
+			}
 		}
-
+		else
+			glBindTexture(GL_TEXTURE_2D, App->textures->sparks_texture);
+		
 		//Drawing shape
 		glBegin(GL_QUADS);
 		glTexCoord2d(0, 0);
@@ -320,7 +327,10 @@ void ComponentParticle::ResetParticle(Particle& p)
 	p.deceleration = 0.0025;
 
 	//Scale 
-	p.scale = ((rand() % (2 - 1 + 1) + 0.5) / 2 + modified_particle.scale);
+	if (parent->IsFirework() == false)
+		p.scale = ((rand() % (2 - 1 + 1) + 0.5) / 2 + modified_particle.scale);
+	else
+		p.scale = 0.3;
 
 	//Life Time
 	p.life_time.Start();
