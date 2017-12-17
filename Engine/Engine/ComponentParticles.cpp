@@ -409,21 +409,23 @@ void ComponentParticle::BlitComponentInspector()
 	// Sprites
 	std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
 	string texture_loaded("Sprites: ");
-	texture_loaded += particle_texture->GetOwnFile();
-	bool opened = ImGui::TreeNodeEx(texture_loaded.c_str(), ImGuiTreeNodeFlags_OpenOnDoubleClick);
-	if (opened)
+	if (particle_texture != nullptr)
 	{
-		for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
+		texture_loaded += particle_texture->GetOwnFile();
+		bool opened = ImGui::TreeNodeEx(texture_loaded.c_str(), ImGuiTreeNodeFlags_OpenOnDoubleClick);
+		if (opened)
 		{
-			if (ImGui::Selectable((*res)->GetOwnFile()))
+			for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
 			{
-				particle_texture = (*res);
+				if (ImGui::Selectable((*res)->GetOwnFile()))
+				{
+					particle_texture = (*res);
+				}
 			}
+
+			ImGui::TreePop();
 		}
-
-		ImGui::TreePop();
 	}
-
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
 }
