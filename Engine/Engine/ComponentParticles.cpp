@@ -52,7 +52,7 @@ bool ComponentParticle::Start()
 			particles[i].color.z = 1;
 
 			//Scale
-			particles[i].scale = 0.25;
+			particles[i].scale = (rand() % (2 - 1 + 1) + 0.5)/2;
 
 			//Initial rotation
 			particles[i].direction = 0;
@@ -111,6 +111,7 @@ bool ComponentParticle::Start()
 		time_to_explode = 1;
 	}
 	modified_particle = particles[0];
+	modified_particle.scale = 0;
 	return true;
 }
 
@@ -319,7 +320,7 @@ void ComponentParticle::ResetParticle(Particle& p)
 	p.deceleration = 0.0025;
 
 	//Scale 
-	p.scale = modified_particle.scale;
+	p.scale = ((rand() % (2 - 1 + 1) + 0.5) / 2 + modified_particle.scale);
 
 	//Life Time
 	p.life_time.Start();
