@@ -247,7 +247,7 @@ bool ComponentParticle::Draw()
 		//Alpha
 		glEnable(GL_ALPHA_TEST);
 		glAlphaFunc(GL_GREATER, 0.0);
-		if (parent->IsFirework() == false)
+		if (parent->IsFirework() == false && particle_texture != nullptr)
 		{
 			if (particle_texture->GetMaterialID() != 0)
 			{
