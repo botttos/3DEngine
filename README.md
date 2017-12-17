@@ -11,7 +11,40 @@ Here's the link to the Particle System project's [repository](https://github.com
 We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEngine), developed by [Eric Solà](https://github.com/HeladodePistacho) and [Ferran Martín](https://github.com/ferranmartinvila).
 *The Fiesta Engine is under the MIT license.*
 
----
+# Work log
+
+## Francisco Ruiz
+- Particles behavior: making the particles seem alive using randomization methods.
+
+- Particle System structure.
+
+- Draw particles with OpenGL.
+
+- Implement particle emissor as a component of the GameObjects.
+
+- Billboard implementation: making particles look to editor camera or main camera when the scene is playing.
+
+- Fireworks implementation: behavior, draw and textures bind.
+
+## Alexis Cosano
+
+# Particle System Explanation
+
+The engine uses a structure of GameObjects. To this GameObjects you can add different components such as Mesh, Transformation or Particle Emissor :)
+
+By default, all GameObjects have a component transformation that defines his position, scale, rotation, etc. into the 3D world. To implement this we use vectors and quaternions. You can modify this transformation from the interface or gizmos, like in other engines like Unity.
+
+To use our Particle System you must create a new Game Object and add the Particle Emissor that will follow his parent Game Object.
+
+Once created, you can modify some variables like position, life time, scale, acceleration, deceleation (or gravity), direction on x and z axis, emission over time and his texture.
+
+Internally, the particle system works this way:
+
+First, we create the number of particles that our particle emmiter will have, 500 by default, giving to their movement random values, so we feel each of them unique.
+
+After, each particle is updated, incrementing his transformation propierties to give them motion and checking the time they are alive to  delete them.
+
+Finally we draw the particles on screen usign OpenGL.
 
 # Engine
 
