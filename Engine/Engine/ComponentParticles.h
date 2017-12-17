@@ -22,6 +22,8 @@ struct Particle
 	float			deceleration;
 	float			scale;
 	Timer			life_time;
+	//Fireworks
+	bool			updated;
 };
 
 class ComponentParticle : public Component

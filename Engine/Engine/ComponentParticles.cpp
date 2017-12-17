@@ -89,7 +89,7 @@ bool ComponentParticle::Start()
 			particles[i].color.z = 1;
 
 			//Scale
-			particles[i].scale = 1.5;
+			particles[i].scale = 0.8;
 
 			//Initial rotation
 			particles[i].direction = 0;
@@ -101,8 +101,11 @@ bool ComponentParticle::Start()
 			particles[i].deceleration = 0.0025;
 
 			//Life time
-			particles[i].life_time.Start();
+			particles[i].life_time.Start(); 
+			particles[i].updated = false;
 		}
+		p_emission_ot = 1.2;
+		p_lifetime = 0.8;
 		//Firework explode timers
 		explode_timer.Start();
 		time_to_explode = 1;
@@ -144,10 +147,14 @@ bool ComponentParticle::Update(float dt)
 			//Move particle
 			if (parent->IsFirework() == true)
 			{
-				p_mov_y += 0.05;
-				particles[i].pos.y -= 0.05 + p_mov_y;
-				particles[i].pos.x += particles[i].mov.x + p_mov_x;
-				particles[i].pos.z += particles[i].mov.z + p_mov_z;
+				if (particles[i].updated == false)
+				{
+					ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+					math::float3 parent_pos = comp_transform->GetPosition();
+					particles[i].pos = parent_pos;
+					particles[i].updated = true;
+				}
+				particles[i].pos.y -= 0.01;
 			}
 			else
 			{
@@ -164,7 +171,7 @@ bool ComponentParticle::Update(float dt)
 			}
 		}
 
-		//Firework motion
+		//Firework GameObject motion
 		if (parent->IsFirework() == true)
 		{
 			//Set gameobject position
