@@ -40,13 +40,13 @@ bool ComponentParticle::Start()
 		particles[i].pos.z = position.z;
 
 		//Movement with random
-		particles[i].x_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
-		particles[i].z_mov = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+		particles[i].mov.x = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+		particles[i].mov.z = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
 		//Set RGB colors
-		particles[i].red = 1;
-		particles[i].green = 1;
-		particles[i].blue = 1;
+		particles[i].color.x = 1;
+		particles[i].color.y = 1;
+		particles[i].color.z = 1;
 
 		//Scale
 		particles[i].scale = 0.25;
@@ -104,17 +104,14 @@ bool ComponentParticle::Update(float dt)
 		for (int i = 0; i < particles_on_scene; i++)
 		{
 			//Set the color of the particle
-			glColor3f(particles[i].red, particles[i].green, particles[i].blue);
+			glColor3f(particles[i].color.x, particles[i].color.y, particles[i].color.z);
 
 			//Move particle
 			particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
 			particles[i].deceleration -= (0.000025 + p_deceleration);
 
-			particles[i].pos.x += particles[i].x_mov;
-			particles[i].pos.z += particles[i].z_mov;
-
-			//Rotate particle
-			//particles[i].direction += (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+			particles[i].pos.x += particles[i].mov.x + p_mov_x;
+			particles[i].pos.z += particles[i].mov.z + p_mov_z;
 
 			if (particles[i].life_time.ReadSec() > p_lifetime)
 			{
@@ -274,15 +271,24 @@ void ComponentParticle::BlitComponentInspector()
 	sprintf(name, "lifetime## %i", id);
 	if (ImGui::SliderFloat(name, &p_lifetime, 0.1f, 1.0f));
 
-	//Deceleration
-	ImGui::Text("Deceleration");
-	sprintf(name, "deceleration## %i", id);
-	if (ImGui::SliderFloat(name, &p_deceleration, -0.2f, 0.2f));
-
 	//Acceleration
 	ImGui::Text("Acceleration");
 	sprintf(name, "acceleration## %i", id);
 	if (ImGui::SliderFloat(name, &p_acceleration, -0.5f, 0.5f));
+
+	//Deceleration
+	ImGui::Text("Deceleration");
+	sprintf(name, "deceleration## %i", id);
+	if (ImGui::SliderFloat(name, &p_deceleration, -0.2f, 0.2f));
+	
+	//X and Z directions
+	ImGui::Text("X direction");
+	sprintf(name, "xmov## %i", id);
+	if (ImGui::SliderFloat(name, &p_mov_x, -0.5f, 0.5f));
+
+	ImGui::Text("Z direction");
+	sprintf(name, "zmov## %i", id);
+	if (ImGui::SliderFloat(name, &p_mov_z, -0.5f, 0.5f));
 
 	//Emission over time
 	ImGui::Text("Emission over time");

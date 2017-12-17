@@ -15,17 +15,12 @@ class ResourceMaterial;
 struct Particle
 {
 	math::float3 pos;
-	float x_mov;
-	float y_mov;
-	float z_mov;
-	float red;
-	float green;
-	float blue;
+	math::float3 mov;
+	math::float3 color;
 	float direction;
 	float acceleration;
 	float deceleration;
 	float scale;
-
 	Timer life_time;
 };
 
@@ -56,6 +51,8 @@ private:
 	int p_count = 500; //Number of particles
 	float p_deceleration = 0;
 	float p_acceleration = 0;
+	float p_mov_x = 0;
+	float p_mov_z = 0;
 	//Emission over time
 	Timer emission_ot;
 	float p_emission_ot = 0.8;
@@ -63,15 +60,6 @@ private:
 
 	//On pause
 	bool paused = false;
-
-	/*Modificable parameters:
-	speed
-	lifetime
-	gravity
-	max particles
-	emission over time
-	velocity over lifetime (x, y, z axis)
-	*/
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
