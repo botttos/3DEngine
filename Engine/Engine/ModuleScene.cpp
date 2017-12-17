@@ -102,6 +102,17 @@ bool ModuleScene::CleanUp()
 	return true;
 }
 
+update_status ModuleScene::Update(float dt)
+{
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	{
+		GameObject* firework = App->scene->CreatePrimitive(PRIMITIVE_TYPE::PRIMITIVE_CUBE);
+		firework->CreateComponent(COMP_PARTICLE);
+		firework->is_firework = true;
+	}
+	return update_status::UPDATE_CONTINUE;
+}
+
 // Set Methods ==================================
 void ModuleScene::SetSelectedGameObject(const GameObject * target)
 {

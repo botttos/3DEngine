@@ -27,7 +27,7 @@ public:
 	bool			Start()final;
 	bool			SceneUpdate(float dt);
 	bool			CleanUp()final;
-
+	update_status	Update(float dt);
 private:
 
 	SCENE_UPDATE_STATE		scene_update_state = EDIT_SCENE_STATE;

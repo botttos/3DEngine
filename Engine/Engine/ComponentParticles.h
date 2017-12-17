@@ -61,6 +61,10 @@ private:
 	int				particles_on_scene = 0;
 	//On pause
 	bool			paused = false;
+
+	//Firework
+	Timer			explode_timer;
+	float			time_to_explode = 1;
 };
 
 #endif // !_COMPONENT_PARTICLES_H_

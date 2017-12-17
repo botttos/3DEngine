@@ -70,7 +70,8 @@ public:
 	GameObject*			GetParent() const;
 	bool				IsRoot() const;
 	bool				IsSelectedObject() const;
-	
+	bool				is_firework = false;
+	bool				IsFirework();
 	//Functionality ---------
 	//Components Methods 
 	Component*		CreateComponent(COMPONENT_TYPE c_type);

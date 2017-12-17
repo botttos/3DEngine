@@ -12,6 +12,7 @@
 #include "ResourcesManager.h"
 #include "Serializer.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleInput.h"
 
 
 ComponentParticle::ComponentParticle()
@@ -28,39 +29,82 @@ bool ComponentParticle::Start()
 	//id_texture =
 	emission_ot.Start();
 	
-	for (int i = 0; i < p_count; i++)
+	if (parent->IsFirework() == false)
 	{
-		//Position
-		ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
-		math::float3 position = comp_transform->GetPosition();
+		for (int i = 0; i < p_count; i++)
+		{
+			//Position
+			ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+			math::float3 position = comp_transform->GetPosition();
 
-		particles[i].pos.x = position.x;
-		particles[i].pos.y = position.y;
-		particles[i].pos.z = position.z;
+			particles[i].pos.x = position.x;
+			particles[i].pos.y = position.y;
+			particles[i].pos.z = position.z;
 
-		//Movement with random
-		particles[i].mov.x = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
-		particles[i].mov.z = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+			//Movement with random
+			particles[i].mov.x = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+			particles[i].mov.z = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
-		//Set RGB colors
-		particles[i].color.x = 1;
-		particles[i].color.y = 1;
-		particles[i].color.z = 1;
+			//Set RGB colors
+			particles[i].color.x = 1;
+			particles[i].color.y = 1;
+			particles[i].color.z = 1;
 
-		//Scale
-		particles[i].scale = 0.25;
+			//Scale
+			particles[i].scale = 0.25;
 
-		//Initial rotation
-		particles[i].direction = 0;
+			//Initial rotation
+			particles[i].direction = 0;
 
-		//Acceleration with random
-		particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) -(((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+			//Acceleration with random
+			particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
 
-		//Deceleration
-		particles[i].deceleration = 0.0025;
+			//Deceleration
+			particles[i].deceleration = 0.0025;
 
-		//Life time
-		particles[i].life_time.Start();
+			//Life time
+			particles[i].life_time.Start();
+		}
+	}
+	else
+	{
+		for (int i = 0; i < p_count; i++)
+		{
+			//Position
+			ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+			math::float3 position = comp_transform->GetPosition();
+
+			particles[i].pos.x = position.x;
+			particles[i].pos.y = position.y;
+			particles[i].pos.z = position.z;
+
+			//Movement with random
+			particles[i].mov.x = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+			particles[i].mov.z = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+
+			//Set RGB colors
+			particles[i].color.x = 1;
+			particles[i].color.y = 1;
+			particles[i].color.z = 1;
+
+			//Scale
+			particles[i].scale = 1.5;
+
+			//Initial rotation
+			particles[i].direction = 0;
+
+			//Acceleration with random
+			particles[i].acceleration = (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004) - (((((((2 - 1 + 1) * rand() % 11) + 1) - 1 + 1) * rand() % 11) + 1) * 0.004);
+
+			//Deceleration
+			particles[i].deceleration = 0.0025;
+
+			//Life time
+			particles[i].life_time.Start();
+		}
+		//Firework explode timers
+		explode_timer.Start();
+		time_to_explode = 1;
 	}
 	modified_particle = particles[0];
 	return true;
@@ -70,6 +114,7 @@ bool ComponentParticle::Update(float dt)
 {
 	//Orientating particles
 	OrientToCamera();
+
 	if (App->scene->scene_paused == false)
 	{
 		//Restart timers if particle was paused
@@ -107,6 +152,20 @@ bool ComponentParticle::Update(float dt)
 			{
 				particles_on_scene--;
 				ResetParticle(particles[i]);
+			}
+		}
+		//Firework motion
+		if (parent->IsFirework() == true)
+		{
+			ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+			math::float3 movement = comp_transform->GetPosition();
+			movement.y += 0.05;
+			comp_transform->SetPosition(movement);
+			comp_transform->UpdateTransform();
+			if (explode_timer.ReadSec() > time_to_explode)
+			{
+				explode_timer.Stop();
+				App->scene->ReleaseGameObject(parent, App->scene->GetRoot());
 			}
 		}
 	}

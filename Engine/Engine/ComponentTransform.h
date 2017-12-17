@@ -49,6 +49,7 @@ public:
 
 	//Get Methods -----------
 	math::float3	GetPosition()const;
+	math::float3	SetPosition(math::float3);
 	math::float3	GetRotationEuler()const;
 	math::Quat		GetRotationQuat()const;
 	math::float3	GetScale()const;

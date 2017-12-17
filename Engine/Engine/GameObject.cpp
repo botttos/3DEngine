@@ -236,6 +236,11 @@ bool GameObject::IsSelectedObject() const
 	return (this == App->scene->GetSelectedGameObject());
 }
 
+bool GameObject::IsFirework()
+{
+	return is_firework;
+}
+
 // Functionality ================================
 Component * GameObject::CreateComponent(COMPONENT_TYPE c_type)
 {

@@ -99,6 +99,12 @@ math::float3 ComponentTransform::GetPosition() const
 	return position;
 }
 
+math::float3 ComponentTransform::SetPosition(math::float3 new_pos)
+{
+	position = new_pos;
+	return position;
+}
+
 math::float3 ComponentTransform::GetRotationEuler() const
 {
 	return rotation_euler_angles;
