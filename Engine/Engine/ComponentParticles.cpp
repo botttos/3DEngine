@@ -89,7 +89,7 @@ bool ComponentParticle::Start()
 			particles[i].color.z = 1;
 
 			//Scale
-			particles[i].scale = 0.3;
+			particles[i].scale = 0.8;
 
 			//Initial rotation
 			particles[i].direction = 0;
@@ -105,10 +105,10 @@ bool ComponentParticle::Start()
 			particles[i].updated = false;
 		}
 		p_emission_ot = 1.2;
-		p_lifetime = 1;
+		p_lifetime = 2;
 		//Firework explode timers
 		explode_timer.Start();
-		time_to_explode = 1;
+		time_to_explode = 2;
 		time_exploding = 2;
 	}
 	modified_particle = particles[0];
