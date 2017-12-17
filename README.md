@@ -22,7 +22,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 - Particles behavior: making the particles seem alive using randomization methods.
 
 
-![](https://i.imgur.com/gshRthe.gif)
+![](https://i.gyazo.com/3604c2f6072d2ee0a2951988cca946f9.gif)
 
 - Particle System code structure.
 
