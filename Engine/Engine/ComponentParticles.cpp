@@ -154,7 +154,7 @@ bool ComponentParticle::Draw()
 		//Alpha
 		glEnable(GL_ALPHA_TEST);
 		//TODO replace 0.5 with float alpha_value from material component
-		glAlphaFunc(GL_GREATER, 0.3);
+		glAlphaFunc(GL_GREATER, 0.0);
 		glBindTexture(GL_TEXTURE_2D, App->textures->smoke_icon);
 
 		//Drawing shape
