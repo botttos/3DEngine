@@ -111,8 +111,18 @@ bool ComponentParticle::Start()
 		time_to_explode = 2;
 		time_exploding = 2;
 	}
+
+	// Smoke simulation
 	modified_particle = particles[0];
+	modified_particle.pos.x = 0;
+	modified_particle.pos.y = 0;
+	modified_particle.pos.z = 0;
 	modified_particle.scale = 0;
+	p_lifetime = 0;
+	p_lifetime = 1.513;
+	p_acceleration = 0.122;
+	p_mov_x = 0.073;
+	p_emission_ot = 3.293;
 	return true;
 }
 
