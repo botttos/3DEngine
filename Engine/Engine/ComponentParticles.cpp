@@ -66,6 +66,7 @@ bool ComponentParticle::Start()
 			//Life time
 			particles[i].life_time.Start();
 		}
+		p_emission_ot = 3.293;
 	}
 	else
 	{
@@ -104,7 +105,7 @@ bool ComponentParticle::Start()
 			particles[i].life_time.Start(); 
 			particles[i].updated = false;
 		}
-		p_emission_ot = 1.2;
+		p_emission_ot = 2;
 		p_lifetime = 2;
 		//Firework explode timers
 		explode_timer.Start();
@@ -117,12 +118,11 @@ bool ComponentParticle::Start()
 	modified_particle.pos.x = 0;
 	modified_particle.pos.y = 0;
 	modified_particle.pos.z = 0;
-	modified_particle.scale = 0;
-	p_lifetime = 0;
+	modified_particle.scale = 1;
 	p_lifetime = 1.513;
-	p_acceleration = 0.122;
+	p_acceleration = 0.073;
 	p_mov_x = 0.073;
-	p_emission_ot = 3.293;
+	
 	return true;
 }
 

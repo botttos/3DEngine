@@ -1,9 +1,13 @@
-# Particle System
+﻿# Particle System
 A Particle System developed by [Alexis Cosano](https://github.com/AlexisCosano) and [Francisco Ruiz](https://github.com/botttos).
 This code is under the [MIT License](https://opensource.org/licenses/MIT).
 
 We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEngine), developed by [Eric Solà](https://github.com/HeladodePistacho) and [Ferran Martín](https://github.com/ferranmartinvila).
 *The Fiesta Engine is under the MIT license.*
+
+Link to the Particle System's repository: https://github.com/botttos/ParticleSystem
+Link to the latest release: https://github.com/botttos/ParticleSystem/releases
+Link to our website: https://botttos.github.io/ParticleSystem/
 
 ---
 
