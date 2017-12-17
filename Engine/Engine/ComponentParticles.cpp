@@ -155,7 +155,8 @@ bool ComponentParticle::Update(float dt)
 					particles[i].pos = parent_pos;
 					particles[i].updated = true;
 				}
-				particles[i].pos.y -= 0.05;
+				if(particles[i].pos.y >= 0)
+					particles[i].pos.y -= 0.2;
 
 				particles[i].pos.x += particles[i].mov.x;
 				particles[i].pos.z += particles[i].mov.z;	
