@@ -104,11 +104,14 @@ bool ModuleScene::CleanUp()
 
 update_status ModuleScene::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN && num_fireworks == 0)
 	{
-		GameObject* firework = App->scene->CreatePrimitive(PRIMITIVE_TYPE::PRIMITIVE_CUBE);
-		firework->CreateComponent(COMP_PARTICLE);
+		num_fireworks++;
+		GameObject* firework = App->scene->CreateGameObject();
 		firework->is_firework = true;
+		firework->CreateComponent(COMP_MESH);
+		firework->CreateComponent(COMP_TRANSFORMATION);
+		firework->CreateComponent(COMP_PARTICLE);
 	}
 	return update_status::UPDATE_CONTINUE;
 }

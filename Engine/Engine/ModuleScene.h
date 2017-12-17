@@ -42,7 +42,7 @@ private:
 	bool					inspector_state = true;
 	bool					show_components_window = false;
 	bool					show_gameobject_hierarchy_window = false;
-
+	
 	Octree<GameObject*>			octree;
 	std::vector<GameObject*>	static_objects;
 
@@ -120,6 +120,6 @@ public:
 	bool		scene_paused = false;
 	bool		SetSceneRun();
 	bool		scene_running = false;
-
+	uint		num_fireworks = 0;
 };
 #endif
