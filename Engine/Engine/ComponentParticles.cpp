@@ -71,6 +71,7 @@ bool ComponentParticle::Update(float dt)
 {
 	if (App->scene->scene_paused == false)
 	{
+		//Restart timers if particle was paused
 		if (paused == true)
 		{
 			paused = false;
@@ -124,6 +125,7 @@ bool ComponentParticle::Update(float dt)
 	}
 	else if (paused == false)
 	{
+		//Pause timers
 		paused = true;
 		emission_ot.Stop();
 		for (int i = 0; i < particles_on_scene; i++)
@@ -181,7 +183,6 @@ bool ComponentParticle::Draw()
 		glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glPopMatrix();
-
 	}
 	return false;
 }
@@ -267,33 +268,26 @@ void ComponentParticle::BlitComponentInspector()
 	ImGui::Text("Scale");
 	sprintf(name, "scale## %i", id);
 	if (ImGui::DragFloat(name, &modified_particle.scale, 0.1f, 0.1f));
-	
-	//Number of particles
-	ImGui::Text("Number of particles");
-	sprintf(name, "number of particles## %i", id);
-	if (ImGui::DragInt(name, &p_count, 1, 0.001f));
-	if(p_count > 500)
-		p_count = 500;
 
 	//Life time
 	ImGui::Text("Life time");
 	sprintf(name, "lifetime## %i", id);
-	if (ImGui::DragFloat(name, &p_lifetime, 0.1f, 0.001f));
+	if (ImGui::SliderFloat(name, &p_lifetime, 0.1f, 1.0f));
 
 	//Deceleration
 	ImGui::Text("Deceleration");
 	sprintf(name, "deceleration## %i", id);
-	if (ImGui::DragFloat(name, &p_deceleration, 0.0001f, 0.001f));
+	if (ImGui::SliderFloat(name, &p_deceleration, -0.2f, 0.2f));
 
 	//Acceleration
 	ImGui::Text("Acceleration");
 	sprintf(name, "acceleration## %i", id);
-	if (ImGui::DragFloat(name, &p_acceleration, 0.0001f, 0.001f));
+	if (ImGui::SliderFloat(name, &p_acceleration, -0.5f, 0.5f));
 
 	//Emission over time
 	ImGui::Text("Emission over time");
 	sprintf(name, "emission over time## %i", id);
-	if (ImGui::DragFloat(name, &p_emission_ot, 0.01f, 0.001f));
+	if (ImGui::SliderFloat(name, &p_emission_ot, 0.0f, 10.0f));
 
 	// Sprites
 	std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
