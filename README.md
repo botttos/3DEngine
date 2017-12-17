@@ -20,6 +20,8 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 
 ## Francisco Ruiz
 - Particles behavior: making the particles seem alive using randomization methods.
+
+
 ![](https://i.imgur.com/gshRthe.gif)
 
 - Particle System code structure.
@@ -29,9 +31,12 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 - Implement particle emissor as a component of the GameObjects.
 
 - Billboard implementation: making particles look to editor camera or main camera when the scene is playing.
+
+
 ![](https://i.gyazo.com/20aa0a9f791d227c499b5f3a65f30b19.gif)
 
 - Fireworks implementation: behavior and draw textures.
+
 ![](https://i.gyazo.com/5fb6c9f9c856a7a8ed72e96c6dee1d34.gif)
 
 ## Alexis Cosano
