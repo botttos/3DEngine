@@ -66,9 +66,11 @@ private:
 	bool			paused = false;
 
 	//Firework
-	Timer			explode_timer;
+	Timer			explode_timer;		 //When firework explodes
 	float			time_to_explode = 1;
-
+	Timer			explosion_timer;	 //Time with explosion sprites
+	float			time_exploding = 1;
+	bool			exploded = false;
 	ResourceMaterial* particle_texture = nullptr;
 };
 

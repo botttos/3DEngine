@@ -109,6 +109,7 @@ bool ComponentParticle::Start()
 		//Firework explode timers
 		explode_timer.Start();
 		time_to_explode = 1;
+		time_exploding = 2;
 	}
 	modified_particle = particles[0];
 	modified_particle.scale = 0;
@@ -185,11 +186,11 @@ bool ComponentParticle::Update(float dt)
 			movement.y += 0.05;
 			comp_transform->SetPosition(movement);
 			comp_transform->UpdateTransform();
-			if (explode_timer.ReadSec() > time_to_explode)
+			if (explode_timer.ReadSec() > time_to_explode && exploded == false)
 			{
-				App->scene->num_fireworks--;
-				explode_timer.Stop();
-				App->scene->ReleaseGameObject(parent, App->scene->GetRoot());
+				explosion_timer.Stop();
+				explosion_timer.Start();
+				exploded = true;
 			}
 		}
 	}
@@ -206,6 +207,15 @@ bool ComponentParticle::Update(float dt)
 
 	//Draw particles
 	Draw();
+
+	//Delete firework when finished
+	if (exploded == true && explosion_timer.Read() > time_exploding)
+	{
+		App->scene->num_fireworks--;
+		explode_timer.Stop();
+		App->scene->ReleaseGameObject(parent, App->scene->GetRoot());
+	}
+	
 	return true;
 }
 
@@ -244,8 +254,10 @@ bool ComponentParticle::Draw()
 				glBindTexture(GL_TEXTURE_2D, particle_texture->GetMaterialID());
 			}
 		}
-		else
+		else if(exploded == false)
 			glBindTexture(GL_TEXTURE_2D, App->textures->sparks_texture);
+		else
+			glBindTexture(GL_TEXTURE_2D, App->textures->explode_texture);
 		
 		//Drawing shape
 		glBegin(GL_QUADS);

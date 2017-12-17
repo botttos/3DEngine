@@ -70,7 +70,7 @@ bool ModuleTextures::Start()
 	next_icon = LoadTexture("next_icon.png", "DATA/Textures/");
 	next_click_icon = LoadTexture("next_click_icon.png", "DATA/Textures/");
 	sparks_texture = LoadTexture("sparks.png", "DATA/Textures/");
-	explode_texture = LoadTexture("explode.png", "DATA/Textures/");
+	explode_texture = LoadTexture("explosion.png", "DATA/Textures/");
 
 	garbage_icon = LoadTexture("garbage_icon.png", "DATA/Textures/");
 	up_arrow_icon = LoadTexture("up_arrow_icon.png", "DATA/Textures/");
