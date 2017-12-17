@@ -1,44 +1,19 @@
 # Particle System
-A Particle System developed by [Alexis Cosano](https://github.com/AlexisCosano) and [Francisco Ruiz](https://github.com/botttos).
-This code is under the [MIT License](https://opensource.org/licenses/MIT).
+This project has been created as a product of a college term imparted at the CITM, UPC. We have created a particle system that lets the user create Particle Emitter components, move them freely around a scene, adding textures to the particles and tweaking them playing with the values found on the inspector (life time, speed over time...) to tweak them as desired. This Particle System has been developed by:
+- [Alexis Cosano](https://github.com/AlexisCosano)
+![Alexis](https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAgpAAAAJDhhMDBhNTMzLTBjZWYtNDNiYi1iMTllLWM0Y2VlOTI0ZTRjMA.jpg)
+
+- [Francisco Ruiz](https://github.com/botttos)
+![Fran](https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAcKAAAAJGJjZTA4MzRjLTA4MzktNDkzMC04ZTZjLTM1OTdhMjY2ZDIyMg.jpg)
+
+Here's the link to the Particle System project's [repository](https://github.com/botttos/ParticleSystem) and a link to get the [latest release](https://github.com/botttos/ParticleSystem/releases).
 
 We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEngine), developed by [Eric Solà](https://github.com/HeladodePistacho) and [Ferran Martín](https://github.com/ferranmartinvila).
 *The Fiesta Engine is under the MIT license.*
 
 ---
 
-- Libraries used:
-   - [MathGeoLib](http://clb.demon.fi/MathGeoLib/nightly/) 
-   - [ImGui](https://github.com/ocornut/imgui)
-   - [Bullet](http://bulletphysics.org)
-   - [Sdl](http://www.libsdl.org/)
-   - [Glew](https://github.com/nigels-com/glew)
-   - [cURL](https://curl.haxx.se/)
-
-Bullet and sdl are under the [zlib license](http://www.zlib.net/zlib_license.html).
-ImGui is under the MIT License.
-MathGeoLib is under the [Apache 2 License](http://www.apache.org/licenses/LICENSE-2.0.html).
-
-*We do not own any of the rights of these libraries.*
-
-
-# Instructions
-
-To start the engine, execute the Party Engine.exe, if you execute the Launcher.exe it will only execute the launcher not the engine. 
-
-The engine executable calls the launcher executable and then starts the engine.
-
-## Launcher
-
-When you start the program the launcher will be executed. 
-If you dont have the last engine version a download button and a message of the new version will appear on the top of the window.
-The download button links the new release page where you can download it.
-
-Then you can pulse start and open the engine or close and end the execution.
-
-At the bottom of the window there are links to our github pages where you can see our projects.
-
-## Engine
+# Engine
 
 The engine UI starts showing you the next elements:
 
@@ -140,117 +115,30 @@ To calculate the octree go to “View” -> “Configuration” -> “Scene” -
 
 Octree will be filled with static objects. To set a static objects check the inspector “Static” checkbox. The childs of a static object become static.
 
-
-
 ### Debug mode
 
 When Pressing F1 debug mode is active and you will see the mouse picking ray and the editor camera frustrum in the Game View
 
 
+## The Particle System
 
-# Changelog
-	 -Release 0.3:
-		Resources Reimporation
-		Resources automatically update
-		GameObject hierarchy UI improved
-		Play/Pause/Next UI output
-		Gizmos working(alpha version)
-		Debug mode with F1
-		Huge Bug Fixing
-		
+This project is under the [MIT License](https://opensource.org/licenses/MIT).
+Copyright (c) 2017 Alexis Cosano & Fran Ruiz
 
-	 -Release 0.2.7:
-		Scene Save/Load with resources
-		Scene Resource added
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-	 -Release 0.2.6:
-		Adaptative Octree
-		Octree subdivision optimized
-		Gizmos UI working
-		Gizmos Input(in process)
-		Resource Manager Meta generation
-		Resource Manager Mesh and Material Resources
-		Resource Manager Assets folder load on start
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-	 -Release 0.2.5:
-		Octree multiple subdivision works
-		Octree store static objects
-		Scene Serialization(Load)
-		Play/Pause/Next Buttons 
-		Customizable Docking Improved
-		Docking Save/Load methods
-		Mouse picking
-		Edit camera frustum
-		Lines antialiasing
-		UI always adapts at window size
-
-	 -Release 0.2.3:
-		Octree subdivision polish
-		Scene Serialization (Save)
-		Bounding Boxes Transformation improved
-
-	 -Release 0.2.1:
-		GameObjects added
-		Components added (material,mesh,transform,renderer)
-		File system added
-		Importers (materials and meshes)
-		Data imported using own format files (.fiesta)
-
-	 -Release 0.2:
-		Files can be loaded from any folder
-		UI polished to show models stats
-		UI audio effects updated
-		Windows are resized on window resize
-		Load cancelled in bugged fbx
-            Camera adapt distance deppending on fbx size 
-
-	 -Release 0.1.9.9:
-		Camera input polished
-		Texture drag implemented
-		Geometry Inspector added 
-
-	 -Release 0.1.9.8:
-		Camera movement improved
-		Load Textures
-		Blit Textures
-		Docking improved
-		Viewport using docking implemented
-
- 	 -Release 0.1.9.5:
-		Render meshes
-		Process meshes
-		Load meshes
-
- 	 -Release 0.1.9:
-		Geometry Manager
-		ImGui Docking
-		ImGui Themes
-
-	 -Release 0.1.8:
-		Render Effects
-		Print simple geometry full and wireframe
-		Added glew libraries
-		Added Input manager
-		Added more Drivers and Hardware information
-		Added Input info (mouse and keyboard)
-		Added Profiler to look timing
-		Bugs fixed
-
-	-Release 0.1.5:
-	 	Simple Launcher
-	 	Config screen able to modify values of the application
-	 	Config screen displays fps, memory usage, hardware settings...
-	 	Added Main menu bar and moved random generator and intersections to it
-	 	Link to the github repository
-	 	Link to the last release
-	 	Link to report bugs
-	 	About screen with some information of us
-	 	Added Sounds to Menus
-	 	Camera 3D enabled
-	 	Load and Save files with json
-	 	Implemented mmgr to find memory leaks
-
-	-Release 0.1:
-		Simple UI for testing a random number generator
-		Simple UI for testing intersections between some geometrical figures
-		Console ready to use, still does nothing
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
