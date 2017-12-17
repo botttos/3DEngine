@@ -255,6 +255,7 @@ uint MaterialImporter::Import(const char* path)
 		}
 
 		//Generate a meta file to link the generated resource with the file data
+		Load(resource);
 		resource->Save();
 	
 	}

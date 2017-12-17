@@ -128,6 +128,8 @@ bool ResourceMaterial::Load(Serializer & data)
 
 	mat_type = data.GetString("mat_type");
 
+	LoadInMemory();
+
 	return true;
 }
 

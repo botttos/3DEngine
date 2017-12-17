@@ -266,6 +266,8 @@ bool ComponentParticle::Save(Serializer & array_root) const
 	ret = comp_data.InsertInt("id", id);
 	//Insert actived
 	ret = comp_data.InsertBool("actived", actived);
+	//Particle texture id
+	ret = comp_data.InsertInt("texture_id", particle_texture->GetID());
 
 	//Save the built data in the components array
 	ret = array_root.InsertArrayElement(comp_data);
@@ -281,6 +283,15 @@ bool ComponentParticle::Load(Serializer & data, std::vector<std::pair<Component*
 	id = data.GetInt("id");
 	//Get actived
 	actived = data.GetBool("actived");
+	//Get texture id
+	int texture_id = data.GetInt("texture_id");
+
+	if (texture_id != 0)
+	{
+		//Find the resources with the saved ids
+		ResourceMaterial* mat = (ResourceMaterial*)App->res_manager->Find(texture_id);
+		particle_texture = mat;
+	}
 
 	return ret;
 }
@@ -366,12 +377,14 @@ void ComponentParticle::BlitComponentInspector()
 
 	// Sprites
 	std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
-	bool opened = ImGui::TreeNodeEx("Sprites", ImGuiTreeNodeFlags_OpenOnDoubleClick);
+	string texture_loaded("Sprites: ");
+	texture_loaded += particle_texture->GetOwnFile();
+	bool opened = ImGui::TreeNodeEx(texture_loaded.c_str(), ImGuiTreeNodeFlags_OpenOnDoubleClick);
 	if (opened)
 	{
 		for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
 		{
-			if (ImGui::Selectable((*res)->GetOriginalFile()))
+			if (ImGui::Selectable((*res)->GetOwnFile()))
 			{
 				particle_texture = (*res);
 			}
@@ -379,23 +392,7 @@ void ComponentParticle::BlitComponentInspector()
 
 		ImGui::TreePop();
 	}
-	
-	
-	/*
-	if (ImGui::MenuItem("Sprites"))
-	{
-		std::vector<ResourceMaterial*> all_materials = App->res_manager->FindTextures();
-		
-		uint size = all_materials.size();
-		else
-		{
-			for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
-			{
-				
-			}
-		}
-	}
-	*\
+
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
 }

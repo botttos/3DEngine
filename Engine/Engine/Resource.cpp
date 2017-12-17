@@ -103,7 +103,6 @@ void Resource::RestReference()
 	if (references > 0)
 	{
 		references -= 1;
-		if (references == 0 && !const_in_memory)UnloadInMemory();
 	}
 }
 

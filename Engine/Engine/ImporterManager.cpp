@@ -89,7 +89,7 @@ bool ImporterManager::ImportFile(const char * path, bool place_on_scene)
 				GameObject* obj = App->scene->GetSelectedGameObject();
 				if (obj != nullptr)
 				{
-					obj->SetMaterial((ResourceMaterial*)res);
+					//obj->SetMaterial((ResourceMaterial*)res);
 				}
 				//Set textures custom texture
 				App->textures->SetCustomTexutreID(((ResourceMaterial*)res)->GetMaterialID());
