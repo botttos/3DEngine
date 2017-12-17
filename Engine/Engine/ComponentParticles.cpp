@@ -150,6 +150,11 @@ bool ComponentParticle::Draw()
 		glEnable(GL_TEXTURE_2D);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		//Alpha
+		glEnable(GL_ALPHA_TEST);
+		//TODO replace 0.5 with float alpha_value from material component
+		glAlphaFunc(GL_GREATER, 0.5);
 		glBindTexture(GL_TEXTURE_2D, App->textures->garbage_icon);
 
 		//Drawing shape
@@ -259,7 +264,7 @@ void ComponentParticle::BlitComponentInspector()
 	//Life time
 	ImGui::Text("Life time");
 	sprintf(name, "lifetime## %i", id);
-	if (ImGui::SliderFloat(name, &p_lifetime, 0.1f, 1.0f));
+	if (ImGui::SliderFloat(name, &p_lifetime, 0.1f, 2.0f));
 
 	//Acceleration
 	ImGui::Text("Acceleration");
