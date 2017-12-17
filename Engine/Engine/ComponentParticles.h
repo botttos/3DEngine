@@ -55,6 +55,7 @@ private:
 	float			p_acceleration = 0;
 	float			p_mov_x = 0;
 	float			p_mov_z = 0;
+	float			p_mov_y = 0;
 	//Emission over time
 	Timer			emission_ot;
 	float			p_emission_ot = 0.8;

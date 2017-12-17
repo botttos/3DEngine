@@ -141,13 +141,21 @@ bool ComponentParticle::Update(float dt)
 		{
 			//Set the color of the particle
 			glColor3f(particles[i].color.x, particles[i].color.y, particles[i].color.z);
-
 			//Move particle
-			particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
-			particles[i].deceleration -= (0.000025 + p_deceleration);
-
-			particles[i].pos.x += particles[i].mov.x + p_mov_x;
-			particles[i].pos.z += particles[i].mov.z + p_mov_z;
+			if (parent->IsFirework() == true)
+			{
+				p_mov_y += 0.05;
+				particles[i].pos.y -= 0.05 + p_mov_y;
+				particles[i].pos.x += particles[i].mov.x + p_mov_x;
+				particles[i].pos.z += particles[i].mov.z + p_mov_z;
+			}
+			else
+			{
+				particles[i].pos.y += ((particles[i].acceleration + p_acceleration) - (particles[i].deceleration + p_deceleration));
+				particles[i].deceleration -= (0.000025 + p_deceleration);
+				particles[i].pos.x += particles[i].mov.x + p_mov_x;
+				particles[i].pos.z += particles[i].mov.z + p_mov_z;
+			}
 
 			if (particles[i].life_time.ReadSec() > p_lifetime)
 			{
@@ -155,9 +163,11 @@ bool ComponentParticle::Update(float dt)
 				ResetParticle(particles[i]);
 			}
 		}
+
 		//Firework motion
 		if (parent->IsFirework() == true)
 		{
+			//Set gameobject position
 			ComponentTransform* comp_transform = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
 			math::float3 movement = comp_transform->GetPosition();
 			movement.y += 0.05;
@@ -165,6 +175,7 @@ bool ComponentParticle::Update(float dt)
 			comp_transform->UpdateTransform();
 			if (explode_timer.ReadSec() > time_to_explode)
 			{
+				App->scene->num_fireworks--;
 				explode_timer.Stop();
 				App->scene->ReleaseGameObject(parent, App->scene->GetRoot());
 			}
