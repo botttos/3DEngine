@@ -66,13 +66,8 @@ After, each particle is updated, incrementing his transformation propierties to 
 
 Finally we draw the particles on screen usign OpenGL.
 
-<iframe
-width="560"
-height="315"
-src="https://youtu.be/NHFouNm0qwo"
-frameborder="0"
-allowfullscreen>
-</iframe>
+Here's a video showing the functionality of our particle system:
+[![Watch the video](https://i.gyazo.com/df8fb3634ba02141f51b47dbcf62e6c8.png)](https://youtu.be/NHFouNm0qwo)
 
 # Engine
 
