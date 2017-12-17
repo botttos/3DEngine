@@ -17,6 +17,7 @@
 
 ComponentParticle::ComponentParticle()
 {
+	particle_texture = new ResourceMaterial();
 }
 
 ComponentParticle::~ComponentParticle()
@@ -214,7 +215,10 @@ bool ComponentParticle::Draw()
 		glEnable(GL_ALPHA_TEST);
 		//TODO replace 0.5 with float alpha_value from material component
 		glAlphaFunc(GL_GREATER, 0.0);
-		glBindTexture(GL_TEXTURE_2D, App->textures->smoke_icon);
+		if (particle_texture->GetMaterialID() != 0)
+		{
+			glBindTexture(GL_TEXTURE_2D, particle_texture->GetMaterialID());
+		}
 
 		//Drawing shape
 		glBegin(GL_QUADS);
@@ -354,10 +358,12 @@ void ComponentParticle::BlitComponentInspector()
 	bool opened = ImGui::TreeNodeEx("Sprites", ImGuiTreeNodeFlags_OpenOnDoubleClick);
 	if (opened)
 	{
-		uint size = all_materials.size();
-		for (uint k = 0; k < size; k++)
+		for (vector<ResourceMaterial*>::const_iterator res = all_materials.begin(); res != all_materials.end(); res++)
 		{
-			
+			if (ImGui::Selectable((*res)->GetOriginalFile()))
+			{
+				particle_texture = (*res);
+			}
 		}
 
 		ImGui::TreePop();

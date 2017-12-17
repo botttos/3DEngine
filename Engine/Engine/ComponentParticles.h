@@ -65,6 +65,8 @@ private:
 	//Firework
 	Timer			explode_timer;
 	float			time_to_explode = 1;
+
+	ResourceMaterial* particle_texture = nullptr;
 };
 
 #endif // !_COMPONENT_PARTICLES_H_
