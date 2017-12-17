@@ -72,6 +72,11 @@ const math::Frustum ComponentCamera::GetFrustum() const
 	return frustum;
 }
 
+GameObject * ComponentCamera::GetParent()
+{
+	return parent;
+}
+
 void ComponentCamera::SetIsMain(bool value)
 {
 	is_main = value;

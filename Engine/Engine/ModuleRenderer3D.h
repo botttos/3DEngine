@@ -144,7 +144,7 @@ public:
 	const FrameTexture* GetFrameTextureRender() const;
 	const FrameTexture* GetFrameTextureGame() const;
 	IGizmo*				GetGizmo() const;
-
+	const math::float3	GetMainCameraPosition() const;
 	//Functionality ---------
 	void OnResize(int width, int height);
 	void OnSceneResize(int width, int height);

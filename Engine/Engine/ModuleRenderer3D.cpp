@@ -16,6 +16,7 @@
 #include "ModuleScene.h"
 #include "ModuleInput.h"
 #include "TimeManager.h"
+#include "ComponentCamera.h"
 
 #ifdef _DEBUG
 #pragma comment (lib, "Engine/imgui/lib/libgizmo.lib")
@@ -851,6 +852,17 @@ IGizmo* ModuleRenderer3D::GetGizmo() const
 	return print_gizmo;
 }
 
+const math::float3 ModuleRenderer3D::GetMainCameraPosition() const
+{
+	if (main_camera != nullptr)
+	{
+		ComponentTransform* main_camera_pos = (ComponentTransform*)main_camera->GetParent()->FindComponent(COMP_TRANSFORMATION);
+		return main_camera_pos->GetPosition();
+	}
+	else
+		return App->camera->GetPosition();
+}
+
 // Functionality ================================
 void ModuleRenderer3D::OnResize(int width, int height)
 {
@@ -1130,7 +1142,7 @@ void ModuleRenderer3D::PrintPlayPauseButton() const
 				App->imgui->GetWorkspace()->GetDockbyLabel("Game##texture")->active = false;
 			}
 		}
-
+		App->scene->SetSceneRun();
 		App->scene->PlayGame();
 	}
 	

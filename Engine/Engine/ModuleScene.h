@@ -116,8 +116,10 @@ public:
 	void		PauseGame();
 	void		NextGameFrame();
 
-	bool			SetSceneState();
-	bool	scene_paused = false;
+	bool		SetSceneState();
+	bool		scene_paused = false;
+	bool		SetSceneRun();
+	bool		scene_running = false;
 
 };
 #endif

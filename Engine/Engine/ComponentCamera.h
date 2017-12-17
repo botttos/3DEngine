@@ -33,6 +33,7 @@ public:
 
 	//Get Methods -----------
 	const math::Frustum GetFrustum() const;
+	GameObject* GetParent();
 
 	//Set Methods -----------
 	void SetIsMain(bool value);

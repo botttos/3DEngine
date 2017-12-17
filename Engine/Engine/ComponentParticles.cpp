@@ -3,7 +3,6 @@
 #include "SDL/include/SDL_opengl.h"
 #include "Application.h"
 #include "ModuleTextures.h"
-#include "GameObject.h"
 #include "MathGeoLib/Math/MathAll.h"
 #include "ComponentTransform.h"
 #include "ComponentCamera.h"
@@ -12,7 +11,7 @@
 #include "ImporterManager.h"
 #include "ResourcesManager.h"
 #include "Serializer.h"
-#include "ModuleScene.h"
+#include "ModuleRenderer3D.h"
 
 
 ComponentParticle::ComponentParticle()
@@ -69,6 +68,8 @@ bool ComponentParticle::Start()
 
 bool ComponentParticle::Update(float dt)
 {
+	//Orientating particles
+	OrientToCamera();
 	if (App->scene->scene_paused == false)
 	{
 		//Restart timers if particle was paused
@@ -87,17 +88,6 @@ bool ComponentParticle::Update(float dt)
 		{
 			particles_on_scene++;
 			emission_ot.Start();
-		}
-
-		//Orientating particles
-		if (App->camera != nullptr)
-		{
-			ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
-			if (parent_pos != nullptr)
-			{
-				math::float3 look = App->camera->GetPosition() - parent_pos->GetPosition();
-				rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
-			}
 		}
 
 		//Update particles
@@ -327,4 +317,27 @@ void ComponentParticle::BlitComponentInspector()
 	*\
 	/*if (ImGui::Button("Save Changes"))
 		ApplyParticleChanges();*/
+}
+
+void ComponentParticle::OrientToCamera()
+{
+	if (App->scene->scene_running == false)
+	{
+		if (App->camera != nullptr)
+		{
+			ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+			if (parent_pos != nullptr)
+			{
+				math::float3 look = App->camera->GetPosition() - parent_pos->GetPosition();
+				rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+			}
+		}
+	}
+	else if (App->scene->scene_running == true)
+	{
+		App->renderer3D->GetMainCameraPosition();
+		ComponentTransform* parent_pos = (ComponentTransform*)parent->FindComponent(COMP_TRANSFORMATION);
+		math::float3 look = App->renderer3D->GetMainCameraPosition() - parent_pos->GetPosition();
+		rotation = math::Quat::LookAt(math::float3(0.0f, 0.0f, 1.0f), look.Normalized(), math::float3(0.0f, 1.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+	}
 }

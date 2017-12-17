@@ -785,3 +785,13 @@ bool ModuleScene::SetSceneState()
 
 	return scene_paused;
 }
+
+bool ModuleScene::SetSceneRun()
+{
+	if (scene_running == true)
+		scene_running = false;
+	else
+		scene_running = true;
+
+	return scene_running;
+}
