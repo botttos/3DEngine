@@ -20,7 +20,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 
 ## Francisco Ruiz
 - Particles behavior: making the particles seem alive using randomization methods.
-![](https://i.gyazo.com/3604c2f6072d2ee0a2951988cca946f9.gif)
+![](https://i.imgur.com/gshRthe.gif)
 
 - Particle System code structure.
 
@@ -38,8 +38,7 @@ We have used as a base the [Fiesta Engine](https://github.com/Code0100Food/3DEng
 
 # Particle System Explanation
 
-![](https://i.imgur.com/gshRthe.gif)
-
+![](https://i.gyazo.com/a860a6af19b6f24b41c60e71b9fa5f05.gif)
 The engine uses a structure of GameObjects. To this GameObjects you can add different components such as Mesh, Transformation or Particle Emissor :)
 
 By default, all GameObjects have a component transformation that defines his position, scale, rotation, etc. into the 3D world. To implement this we use vectors and quaternions. You can modify this transformation from the interface or gizmos, like in other engines like Unity.
@@ -47,6 +46,8 @@ By default, all GameObjects have a component transformation that defines his pos
 To use our Particle System you must create a new Game Object and add the Particle Emissor that will follow his parent Game Object.
 
 Once created, you can modify some variables like position, life time, scale, acceleration, deceleation (or gravity), direction on x and z axis, emission over time and his texture.
+
+![](https://i.gyazo.com/5fb1913e6a099706a95902f764a22dd0.gif)
 
 Internally, the particle system works this way:
 
